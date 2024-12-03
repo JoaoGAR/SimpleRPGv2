@@ -1,0 +1,67 @@
+.skillbook-dialog {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 20px 20px 20px 20px;
+    border: 5px outset #141414e5;
+    width: 890px;
+    height: 90%;
+    max-height: 90%;
+    z-index: 1000;
+}
+
+.skillbook-dialog .attribute-row {
+    border-radius: 5px 5px 5px 5px;
+    border: 1px outset black;
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5), 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.skillbook-dialog .attribute-box .attribute-img {
+    width: 55px;
+    height: 55px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.skillbook-dialog .attribute-box .attribute-button {
+    width: 40px;
+    height: 40px;
+}
+
+.skillbook-dialog .skill-box .skill-img {
+    width: 55px;
+    height: 55px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.skillbook-dialog .skill-box .skill-button {
+    width: 40px;
+    height: 40px;
+}
+
+.skill-info {
+    border-radius: 5px 5px 5px 5px;
+    border: 1px outset #777777;
+    padding: 5px;
+    color: white;
+}
+
+.skill-info .skill-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0px 20px 0px 20px;
+    border: 2px outset #777777;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.500);
+    height: 180px;
+    width: 180px;
+}

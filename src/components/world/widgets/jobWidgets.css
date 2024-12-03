@@ -1,0 +1,32 @@
+.job-widget {
+    align-items: center;
+    border-style: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 5px;
+    height: 50px;
+    width: 50px;
+    background-color: var(--widget-background);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.job-widget .widget-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px outset #141414;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    height: 40px;
+    width: 40px;
+}
+
+.job-widget:hover {
+    z-index: 1001;
+}
+
+.job-widget:hover .widget-image {
+    transform: scale(1.25);
+}

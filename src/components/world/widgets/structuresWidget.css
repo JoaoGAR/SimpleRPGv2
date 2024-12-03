@@ -1,0 +1,49 @@
+.structure-widget {
+    align-items: center;
+    border-style: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 100%;
+    padding: 5px;
+    height: 80px;
+    width: 80px;
+    background-color: var(--widget-background);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.structure-widget .widget-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 1px outset #141414;
+    border-radius: 100%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6), inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    height: 70px;
+    width: 70px;
+}
+
+.structure-widget:hover {
+    z-index: 1001;
+}
+
+.structure-widget:hover .widget-image {
+    transform: scale(1.25);
+}
+
+.structure-info-requirements .skill-img {
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.900);
+}
+
+.structure-info-requirements .skill-requirement-level {
+    height: 100%;
+    border: 2px outset rgb(95, 95, 95);
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgba(0, 0, 0, 0.500);
+}
