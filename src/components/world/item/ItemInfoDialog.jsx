@@ -44,22 +44,22 @@ const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, 
                 })}
             </div>
             <div className="row item-skills">
-                <table className="table table-dark">
-                    <tbody>
-                        {typeof item.abilities !== "undefined" && item.abilities.map((itemAbility) => {
-                            const abilityTypeIcon = itemAbility.ability.typeId == 1 ? <img style={{ height: '20px', width: '20px' }} src='../world/d20w.svg' /> : <img style={{ height: '20px', width: '20px' }} src='../icons/items/shield-w.svg' />
-                            return (
-                                <tr key={itemAbility.id} className="row">
-                                    <td><img className="ability-img" style={{ height: '30px', width: '30px' }} src={itemAbility.ability.icon} /></td>
-                                    <td>{itemAbility.ability.name}</td>
-                                    <td>
-                                        {abilityTypeIcon} {itemAbility.ability.attack}
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                {typeof item.abilities !== "undefined" && item.abilities.map((itemAbility) => {
+                    const abilityTypeIcon = itemAbility.ability.typeId == 1 ? <img style={{ height: '20px', width: '20px' }} src='../world/d20w.svg' /> : <img style={{ height: '20px', width: '20px' }} src='../icons/items/shield-w.svg' />
+                    return (
+                        <div className="row row-cols-3 text-uppercase align-items-center" key={itemAbility.id}>
+                            <div className="col-2">
+                                <img className="ability-img" style={{ height: '30px', width: '30px' }} src={itemAbility.ability.icon} />
+                            </div>
+                            <div className="col-4">
+                                <small>{itemAbility.ability.name}</small>
+                            </div>
+                            <div className="col-2">
+                                <small>{abilityTypeIcon} {itemAbility.ability.attack}</small>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

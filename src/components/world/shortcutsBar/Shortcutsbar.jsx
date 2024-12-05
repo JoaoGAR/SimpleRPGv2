@@ -3,7 +3,7 @@ import QueueDialog from '../queue/QueueDialog';
 import InventoryDialog from '../inventory/InventoryDialog';
 import SkillbookDialog from '../skillbook/SkillbookDialog';
 
-const Shortcutsbar = ({ character, setCharacter }) => {
+const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDialog, closeItemInfoDialog }) => {
 
     const [isQueueDialog, setIsQueueDialog] = useState(false);
     const [isInventoryDialog, setIsInventoryDialog] = useState(false);
@@ -52,7 +52,15 @@ const Shortcutsbar = ({ character, setCharacter }) => {
                     left: "50%",
                     top: "50%",
                 }}>
-                <InventoryDialog character={character} isOpen={isInventoryDialog} onClose={closeInventoryDialog} setCharacter={setCharacter} />
+                <InventoryDialog
+                    character={character}
+                    isOpen={isInventoryDialog}
+                    onClose={closeInventoryDialog}
+                    setCharacter={setCharacter}
+                    setSelectedItem={setSelectedItem}
+                    openItemInfoDialog={openItemInfoDialog}
+                    closeItemInfoDialog={closeItemInfoDialog}
+                />
             </div>
 
             <div className={`dialog skillbook-dialog ${isSkillBookDialog ? 'is-open' : ''}`}

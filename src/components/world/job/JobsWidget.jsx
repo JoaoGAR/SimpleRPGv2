@@ -2,15 +2,14 @@ import "./jobWidgets.css"
 import React, { useState } from 'react';
 import JobsInfoDialog from './JobsInfoDialog';
 
-const JobsWidget = (props) => {
+const JobsWidget = ({ job, openItemInfoDialog, closeItemInfoDialog }) => {
     const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);
 
     const openJobDialog = () => { setIsJobDialogOpen(false); setIsJobDialogOpen(true) };
     const closeJobDialog = () => setIsJobDialogOpen(false);
-    const job = props.job;
     const coordsx = job.coordsx;
     const coordsy = job.coordsy;
-    const widgetBackground = {'--widget-background': `${job.attribute.color}60`};
+    const widgetBackground = { '--widget-background': `${job.attribute.color}60` };
 
     return (
         <div>
@@ -33,9 +32,9 @@ const JobsWidget = (props) => {
                 left: `${coordsx}px`,
                 top: `${coordsy}px`,
             }}>
-                <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} />
+                <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} openItemInfoDialog={openItemInfoDialog} closeItemInfoDialog={closeItemInfoDialog} />
             </div>
-            
+
         </div>
     );
 };

@@ -6,27 +6,13 @@ import { ToastContainer, toast, Flip } from 'react-toastify';
 
 import ItemInfoDialog from '../item/ItemInfoDialog';
 
-const JobsInfoDialog = ({ job, isOpen, onClose }) => {
+const JobsInfoDialog = ({ job, isOpen, onClose, openItemInfoDialog, closeItemInfoDialog }) => {
 
     if (!isOpen) return null;
 
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const requirements = job.requirements;
     const difficulty = requirements.reduce((total, requirement) => total + requirement.skillLevel, 0);
     let jobColor = { '--jobColor': `${job.attribute.color}` };
-
-    const openItemInfoDialog = (item, equiped) => {
-        setSelectedItem({ ...item, equiped: equiped });
-    };
-    const closeItemInfoDialog = () => setSelectedItem(null);
-
-    const handleMouseMove = (event) => {
-        setMousePosition({
-            x: event.clientX,
-            y: event.clientY
-        });
-    };
 
     const handleClickButton = async (duration) => {
         try {
@@ -111,7 +97,7 @@ const JobsInfoDialog = ({ job, isOpen, onClose }) => {
                         <span className="badge bg-warning"><img src="icons/items/coin.svg" alt="Gold amount" /> {job.gold}</span>
                     </div>
                 </div>
-                <div className="row row-cols-6 job-info-rewards" onMouseMove={handleMouseMove}>
+                <div className="row row-cols-6 job-info-rewards">
                     {typeof job.rewards !== "undefined" && job.rewards.map((rewardItem) => {
                         const item = rewardItem.item;
                         const itemGradientStyle = {
@@ -143,20 +129,6 @@ const JobsInfoDialog = ({ job, isOpen, onClose }) => {
                     <button type="button" className="btn btn-success btn-block border border-dark-subtle" onClick={() => handleClickButton(2)}>2 Horas</button>
                 </div>
             </div>
-
-            {
-                selectedItem && (
-                    <ItemInfoDialog
-                        item={selectedItem}
-                        mousePosition={mousePosition}
-                        isOpen={!!selectedItem}
-                        onClose={closeItemInfoDialog}
-                        equiped={selectedItem.equiped}
-                        diffx={400}
-                        diffy={250}
-                    />
-                )
-            }
         </>
     );
 };

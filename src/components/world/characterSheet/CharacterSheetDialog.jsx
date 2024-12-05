@@ -6,11 +6,9 @@ import { ToastContainer, toast, Flip } from "react-toastify";
 import EquipmentSlot from "../item/EquipmentSlot";
 import ItemInfoDialog from '../item/ItemInfoDialog';
 
-const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
+const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog, closeItemInfoDialog }) => {
 
     const [character, setCharacter] = useState(null);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     const [equipment, setEquipment] = useState([]);
     const [mainHand, setMainHand] = useState([]);
@@ -110,18 +108,6 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
         }
     }
 
-    const openItemInfoDialog = (item, equiped) => {
-        setSelectedItem({ ...item, equiped: equiped });
-    };
-    const closeItemInfoDialog = () => setSelectedItem(null);
-
-    const handleMouseMove = (event) => {
-        setMousePosition({
-            x: event.clientX,
-            y: event.clientY
-        });
-    };
-
     return (
         <>
             <div className="row row-cols-3 dialog-header align-items-center">
@@ -135,7 +121,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                     <button className="btn btn-sm btn-danger" onClick={onClose}><i className="bi bi-x"></i></button>
                 </div>
             </div>
-            <div className="row row-cols-4 dialog-body character-sheet-equipment" onMouseMove={handleMouseMove}>
+            <div className="row row-cols-4 dialog-body character-sheet-equipment">
                 <div className="col-1 me-4">
                     <div className="row row-cols-1">
                         {[
@@ -251,17 +237,6 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
             </div>
             <div className="row row-cols-3 d-flex justify-content-end align-items-end dialog-footer">
             </div>
-            {selectedItem && (
-                <ItemInfoDialog
-                    item={selectedItem}
-                    mousePosition={mousePosition}
-                    isOpen={!!selectedItem}
-                    onClose={closeItemInfoDialog}
-                    equiped={selectedItem.equiped}
-                    diffx={510}
-                    diffy={130}
-                />
-            )}
         </>
     );
 };

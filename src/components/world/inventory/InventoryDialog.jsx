@@ -4,15 +4,12 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import EquipmentSlot from "../item/EquipmentSlot";
 import ItemBox from "../item/ItemBox";
-import ItemInfoDialog from '../item/ItemInfoDialog';
 
-const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
+const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelectedItem, openItemInfoDialog, closeItemInfoDialog }) => {
 
     const inventorySize = character.inventorySize;
 
     const [listInventory, setListInventory] = useState([]);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [equipment, setEquipment] = useState(character.inventory);
     const [mainHand, setMainHand] = useState([]);
     const [offHand, setOffHand] = useState([]);
@@ -80,18 +77,6 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
 
     if (!isOpen) return null;
 
-    const openItemInfoDialog = (item, equiped) => {
-        setSelectedItem({ ...item, equiped: equiped });
-    };
-    const closeItemInfoDialog = () => setSelectedItem(null);
-
-    const handleMouseMove = (event) => {
-        setMousePosition({
-            x: event.clientX,
-            y: event.clientY
-        });
-    };
-
     const equipItem = async (inventoryId, equiped) => {
         const response = await Axios.post("http://localhost:3001/api/inventory/equip/item", {
             inventoryId,
@@ -118,7 +103,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                     <button className="btn btn-sm btn-danger" onClick={onClose}><i className="bi bi-x"></i></button>
                 </div>
             </div>
-            <div className="row row-cols-2 dialog-body" onMouseMove={handleMouseMove}>
+            <div className="row row-cols-2 dialog-body">
                 <div className="col-1 inventory-equipment">
                     <div className="row row-cols-3">
                         <div className="col-3">
@@ -185,19 +170,6 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                 </div>
             </div>
 
-            {
-                selectedItem && (
-                    <ItemInfoDialog
-                        item={selectedItem}
-                        mousePosition={mousePosition}
-                        isOpen={!!selectedItem}
-                        onClose={closeItemInfoDialog}
-                        equiped={selectedItem.equiped}
-                        diffx={550}
-                        diffy={90}
-                    />
-                )
-            }
         </>
     );
 };

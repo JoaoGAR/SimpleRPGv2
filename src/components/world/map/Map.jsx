@@ -3,7 +3,7 @@ import JobsWidget from '../job/JobsWidget';
 import CharacterWidget from '../characterInfo/CharacterWidget';
 import StructuresWidget from '../widgets/StructuresWidget';
 
-const Map = ({ mapUrl, jobs, structures, character, setCharacter }) => {
+const Map = ({ mapUrl, jobs, structures, character, setCharacter, openItemInfoDialog, closeItemInfoDialog }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [dragging, setDragging] = useState(false);
     const [viewportSize, setViewportSize] = useState({ width: window.innerWidth, height: window.innerHeight });
@@ -82,7 +82,7 @@ const Map = ({ mapUrl, jobs, structures, character, setCharacter }) => {
                     <StructuresWidget key={structure.id} structure={structure} />
                 ))}
                 {typeof jobs !== "undefined" && jobs.map((job) => (
-                    <JobsWidget key={job.id} job={job} character={character} />
+                    <JobsWidget key={job.id} job={job} character={character} openItemInfoDialog={openItemInfoDialog} closeItemInfoDialog={closeItemInfoDialog} />
                 ))}
                 <CharacterWidget character={character} />
             </div>
