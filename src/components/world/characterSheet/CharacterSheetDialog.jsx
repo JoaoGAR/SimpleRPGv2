@@ -3,8 +3,8 @@ import "./characterSheetDialog.css";
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import { ToastContainer, toast, Flip } from "react-toastify";
-import EquipmentSlot from "../widgets/EquipmentSlot";
-import ItemInfoDialog from '../dialogs/ItemInfoDialog';
+import EquipmentSlot from "../item/EquipmentSlot";
+import ItemInfoDialog from '../item/ItemInfoDialog';
 
 const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
 

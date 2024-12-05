@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import JobsWidget from '../widgets/JobsWidget';
-import CharacterWidget from '../widgets/CharacterWidget';
+import JobsWidget from '../job/JobsWidget';
+import CharacterWidget from '../characterInfo/CharacterWidget';
 import StructuresWidget from '../widgets/StructuresWidget';
 
 const Map = ({ mapUrl, jobs, structures, character, setCharacter }) => {

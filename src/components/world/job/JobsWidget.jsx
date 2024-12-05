@@ -1,6 +1,6 @@
 import "./jobWidgets.css"
 import React, { useState } from 'react';
-import JobsInfoDialog from '../dialogs/JobsInfoDialog';
+import JobsInfoDialog from './JobsInfoDialog';
 
 const JobsWidget = (props) => {
     const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);

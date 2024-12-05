@@ -2,9 +2,9 @@ import "../dialogs/dialogs.css"
 import "./inventoryDialog.css"
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import EquipmentSlot from "../widgets/EquipmentSlot";
-import ItemBox from "../widgets/ItemBox";
-import ItemInfoDialog from '../dialogs/ItemInfoDialog';
+import EquipmentSlot from "../item/EquipmentSlot";
+import ItemBox from "../item/ItemBox";
+import ItemInfoDialog from '../item/ItemInfoDialog';
 
 const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
 
