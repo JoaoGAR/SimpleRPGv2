@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import Axios from 'axios';
 
-import Map from "./widgets/Map";
-import Shortcutsbar from "./widgets/Shortcutsbar";
-import CharacterInfo from "./widgets/CharacterInfo";
-import CharacterSheetDialog from "./dialogs/CharacterSheetDialog";
+import Map from "./map/Map";
+import Shortcutsbar from "./shortcutsBar/Shortcutsbar";
+import CharacterInfo from "./characterInfo/CharacterInfo";
+import CharacterSheetDialog from "./characterSheet/CharacterSheetDialog";
 
 const Index = () => {
     const { auth } = useContext(AuthContext);

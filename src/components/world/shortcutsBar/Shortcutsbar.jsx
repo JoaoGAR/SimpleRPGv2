@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import QueueDialog from '../dialogs/QueueDialog';
-import InventoryDialog from '../dialogs/InventoryDialog';
-import SkillbookDialog from '../dialogs/SkillbookDialog';
+import QueueDialog from '../queue/QueueDialog';
+import InventoryDialog from '../inventory/InventoryDialog';
+import SkillbookDialog from '../skillbook/SkillbookDialog';
 
 const Shortcutsbar = ({ character, setCharacter }) => {
 

@@ -1,4 +1,4 @@
-import "./dialogs.css";
+import "../dialogs/dialogs.css";
 import "./skillBookDialog.css";
 import React, { useState, useEffect } from "react";
 import Axios from "axios";

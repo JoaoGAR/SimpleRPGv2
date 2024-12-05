@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import JobsWidget from './JobsWidget';
-import CharacterWidget from './CharacterWidget';
-import StructuresWidget from './StructuresWidget';
+import JobsWidget from '../widgets/JobsWidget';
+import CharacterWidget from '../widgets/CharacterWidget';
+import StructuresWidget from '../widgets/StructuresWidget';
 
 const Map = ({ mapUrl, jobs, structures, character, setCharacter }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });

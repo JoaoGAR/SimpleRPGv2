@@ -1,9 +1,9 @@
-import "./dialogs.css"
-import "./rewardsDialog.css"
+import "../dialogs/dialogs.css"
+import "../rewards/rewardsDialog.css"
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import JobQueueCard from "../cards/JobQueueCard";
-import RewardDialog from "./RewardDialog";
+import JobQueueCard from "./JobQueueCard";
+import RewardDialog from "../rewards/RewardDialog";
 
 const QueueDialog = ({ isOpen, onClose, setCharacter }) => {
 

@@ -23,7 +23,7 @@ const Login = () => {
             const response = await Axios.post('http://localhost:3001/api/auth/login', formData);
             if (response.status === 200) {
                 await login(response.data.token);
-                navigate('/dashboard');
+                navigate('/world');
             }
         } catch (err) {
             console.error(err);

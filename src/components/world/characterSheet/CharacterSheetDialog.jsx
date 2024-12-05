@@ -1,4 +1,4 @@
-import "./dialogs.css";
+import "../dialogs/dialogs.css";
 import "./characterSheetDialog.css";
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
