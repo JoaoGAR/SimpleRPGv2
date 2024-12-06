@@ -10,6 +10,8 @@ import PrivateRoute from './components/login/PrivateRoute';
 import CharacterCreation from './components/character/CharacterCreation';
 import Index from './components/world/Index';
 
+import City from './components/city/City';
+
 import { AuthProvider } from './context/AuthContext';
 
 function App() {
@@ -40,6 +42,13 @@ function App() {
                         element={
                             <PrivateRoute>
                                 <Index />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route path="/city/:cityName/:cityId"
+                        element={
+                            <PrivateRoute>
+                                <City />
                             </PrivateRoute>
                         }
                     />

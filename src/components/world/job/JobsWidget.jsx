@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import JobsInfoDialog from './JobsInfoDialog';
 
 const JobsWidget = ({ job, openItemInfoDialog, closeItemInfoDialog }) => {
+    
     const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);
 
     const openJobDialog = () => { setIsJobDialogOpen(false); setIsJobDialogOpen(true) };

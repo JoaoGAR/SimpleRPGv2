@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import JobsWidget from '../job/JobsWidget';
 import CharacterWidget from '../characterInfo/CharacterWidget';
-import StructuresWidget from '../widgets/StructuresWidget';
+import StructuresWidget from '../structures/StructuresWidget';
 
 const Map = ({ mapUrl, jobs, structures, character, setCharacter, openItemInfoDialog, closeItemInfoDialog }) => {
     const [position, setPosition] = useState({ x: 0, y: 0 });

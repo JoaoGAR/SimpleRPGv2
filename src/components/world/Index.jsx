@@ -13,6 +13,7 @@ import CharacterSheetDialog from "./characterSheet/CharacterSheetDialog";
 import ItemInfoDialog from '../world/item/ItemInfoDialog';
 
 const Index = () => {
+
     const { auth } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -51,9 +52,24 @@ const Index = () => {
 
     return (
         <div className="game-container" onMouseMove={handleMouseMove}>
-            <Map mapUrl={mapaUrl} jobs={listJobs} structures={listStructures} character={character} setCharacter={setCharacter} openItemInfoDialog={openItemInfoDialog} closeItemInfoDialog={closeItemInfoDialog} />
+            <Map
+                mapUrl={mapaUrl}
+                jobs={listJobs}
+                structures={listStructures}
+                character={character}
+                setCharacter={setCharacter}
+                openItemInfoDialog={openItemInfoDialog}
+                closeItemInfoDialog={closeItemInfoDialog}
+            />
+
             <CharacterInfo character={character} openCharacterSheetDialog={openCharacterSheetDialog} />
-            <Shortcutsbar character={character} setCharacter={setCharacter} setSelectedItem={setSelectedItem} openItemInfoDialog={openItemInfoDialog} closeItemInfoDialog={closeItemInfoDialog} />
+            <Shortcutsbar
+                character={character}
+                setCharacter={setCharacter}
+                setSelectedItem={setSelectedItem}
+                openItemInfoDialog={openItemInfoDialog}
+                closeItemInfoDialog={closeItemInfoDialog}
+            />
 
             <div className={`dialog character-sheet-dialog ${isCharacterSheetDialog ? 'is-open' : ''}`}
                 style={{

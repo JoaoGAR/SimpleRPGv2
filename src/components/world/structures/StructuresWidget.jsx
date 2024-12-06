@@ -1,7 +1,13 @@
 import "./structuresWidget.css"
-import React from 'react';
+import "../dialogs/dialogs.css";
+import { useNavigate } from 'react-router-dom';
 
 const StructuresWidget = ({ structure }) => {
+
+    const navigate = useNavigate();
+    const structureName = structure.name.replace(/ /g, '-');
+    const openCityDialog = () => { navigate(`/city/${structureName}/${structure.id}`); };
+
     return (
         <div>
             <span
@@ -11,6 +17,7 @@ const StructuresWidget = ({ structure }) => {
                     left: `${structure.coordsx}px`,
                     top: `${structure.coordsy}px`,
                 }}
+                onClick={openCityDialog}
             >
                 <div className="d-flex justify-content-center align-items-center">
                     <div className="widget-image" style={{ backgroundImage: `url("${structure.icon}")` }}></div>
