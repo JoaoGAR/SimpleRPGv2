@@ -16,6 +16,7 @@ import BattleCamp from './components/battle/battleCamp';
 
 import { AuthProvider } from './context/AuthContext';
 import { BattleRollsProvider } from './context/BattleContext';
+import { ItemInfoProvider } from './context/ItemInfoContext';
 
 function App() {
     return (
@@ -44,7 +45,7 @@ function App() {
                     <Route path="/world"
                         element={
                             <PrivateRoute>
-                                <Index />
+                                <ItemInfoProvider><Index /></ItemInfoProvider>
                             </PrivateRoute>
                         }
                     />

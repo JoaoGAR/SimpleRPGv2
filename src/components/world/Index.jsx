@@ -1,7 +1,7 @@
 import "./world.css";
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useItemInfo } from '../../context/ItemInfoContext';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import Axios from 'axios';
 
@@ -10,15 +10,10 @@ import Shortcutsbar from "./shortcutsBar/Shortcutsbar";
 import CharacterInfo from "./characterInfo/CharacterInfo";
 import CharacterSheetDialog from "./characterSheet/CharacterSheetDialog";
 
-import ItemInfoDialog from '../world/item/ItemInfoDialog';
-
 const Index = () => {
 
     const { auth } = useContext(AuthContext);
-    const navigate = useNavigate();
-
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const { handleMouseMove } = useItemInfo();
 
     const [isCharacterSheetDialog, setCharacterSheetDialog] = useState(false);
     const [listJobs, setListJobs] = useState();
@@ -28,18 +23,6 @@ const Index = () => {
 
     const openCharacterSheetDialog = () => setCharacterSheetDialog(true);
     const closeCharacterSheetDialog = () => setCharacterSheetDialog(false);
-
-    const handleMouseMove = (event) => {
-        setMousePosition({
-            x: event.clientX,
-            y: event.clientY
-        });
-    };
-
-    const openItemInfoDialog = (item, equiped) => {
-        setSelectedItem({ ...item, equiped: equiped });
-    };
-    const closeItemInfoDialog = () => setSelectedItem(null);
 
     useEffect(() => {
         Axios.get("http://localhost:3001/api/job/get").then((response) => {
@@ -58,17 +41,12 @@ const Index = () => {
                 structures={listStructures}
                 character={character}
                 setCharacter={setCharacter}
-                openItemInfoDialog={openItemInfoDialog}
-                closeItemInfoDialog={closeItemInfoDialog}
             />
 
             <CharacterInfo character={character} openCharacterSheetDialog={openCharacterSheetDialog} />
             <Shortcutsbar
                 character={character}
                 setCharacter={setCharacter}
-                setSelectedItem={setSelectedItem}
-                openItemInfoDialog={openItemInfoDialog}
-                closeItemInfoDialog={closeItemInfoDialog}
             />
 
             <div className={`dialog character-sheet-dialog ${isCharacterSheetDialog ? 'is-open' : ''}`}
@@ -76,21 +54,15 @@ const Index = () => {
                     left: "50%",
                     top: "50%",
                 }}>
-                <CharacterSheetDialog characterId={character.id} isOpen={isCharacterSheetDialog} onClose={closeCharacterSheetDialog} setCharacter={setCharacter} openItemInfoDialog={openItemInfoDialog} closeItemInfoDialog={closeItemInfoDialog} />
+                <CharacterSheetDialog
+                    characterId={character.id}
+                    isOpen={isCharacterSheetDialog}
+                    onClose={closeCharacterSheetDialog}
+                    setCharacter={setCharacter}
+                />
             </div>
 
             <ToastContainer />
-            {selectedItem && (
-                <ItemInfoDialog
-                    item={selectedItem}
-                    mousePosition={mousePosition}
-                    isOpen={!!selectedItem}
-                    onClose={closeItemInfoDialog}
-                    equiped={selectedItem.equiped}
-                    diffx={-10}
-                    diffy={-10}
-                />
-            )}
         </div>
     );
 };

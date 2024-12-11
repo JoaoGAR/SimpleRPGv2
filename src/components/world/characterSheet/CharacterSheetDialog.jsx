@@ -2,11 +2,9 @@ import "../dialogs/dialogs.css";
 import "./characterSheetDialog.css";
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import { ToastContainer, toast, Flip } from "react-toastify";
 import EquipmentSlot from "../item/EquipmentSlot";
-import ItemInfoDialog from '../item/ItemInfoDialog';
 
-const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog, closeItemInfoDialog }) => {
+const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
 
     const [character, setCharacter] = useState(null);
 
@@ -31,7 +29,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog
 
     useEffect(() => {
         getCharacter();
-    }, [character]);
+    }, [characterId]);
 
     const setCharacterSheet = (character) => {
         const wellness = character.wellness;
@@ -134,8 +132,6 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog
                             <EquipmentSlot
                                 key={index}
                                 item={item}
-                                openItemInfoDialog={openItemInfoDialog}
-                                closeItemInfoDialog={closeItemInfoDialog}
                                 offset={null}
                                 col={col}
                                 margin={'m-2'}
@@ -178,8 +174,6 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog
                         <div className="col d-flex justify-content-center">
                             <EquipmentSlot
                                 item={mainHand}
-                                openItemInfoDialog={openItemInfoDialog}
-                                closeItemInfoDialog={closeItemInfoDialog}
                                 offset={null}
                                 col={'8'}
                             />
@@ -187,8 +181,6 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog
                         <div className="col d-flex justify-content-center">
                             <EquipmentSlot
                                 item={offHand}
-                                openItemInfoDialog={openItemInfoDialog}
-                                closeItemInfoDialog={closeItemInfoDialog}
                                 offset={null}
                                 col={'8'}
                             />

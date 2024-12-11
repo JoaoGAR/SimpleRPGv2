@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useItemInfo } from '../../../context/ItemInfoContext';
 
 const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, diffy }) => {
 
@@ -33,7 +34,7 @@ const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, 
             <div className="col-12">
                 <p>{item.description}</p>
             </div>
-            <div className="row row-cols-4 item-skills" style={{width: '200px'}}>
+            <div className="row row-cols-4 item-skills" style={{ width: '200px' }}>
                 {typeof item.skills !== "undefined" && item.skills.map((itemSkill) => {
                     return (
                         <div key={itemSkill.id} className="col-2">

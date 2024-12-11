@@ -1,6 +1,9 @@
 import React from 'react';
+import { useItemInfo } from '../../../context/ItemInfoContext';
 
-const EquipmentSlot = ({ item, openItemInfoDialog, closeItemInfoDialog, inventoryId, equipItem, height, offset, col, margin }) => {
+const EquipmentSlot = ({ item, inventoryId, equipItem, height, offset, col, margin }) => {
+    const { handleMouseMove, openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
+
     return (
         <div
             className={`col-${col} ${offset ? 'offset-4' : ''} ${margin ? margin : ''} item-box d-flex justify-content-center align-items-center`}
