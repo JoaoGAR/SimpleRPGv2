@@ -1,18 +1,17 @@
 import './city.css';
-import './dialogs/cityDialog.css';
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useBattleRolls } from '../../context/BattleContext';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
-import { ToastContainer, toast, Flip } from "react-toastify";
 
 import CityShortcuts from './CityShortcuts';
 import AlleyDialog from './dialogs/alley/AlleyDialog';
 import ArenaDialog from './dialogs/arena/ArenaDialog';
-
 const City = () => {
 
     const { auth } = useContext(AuthContext);
+    const { openBattleRolls } = useBattleRolls();
 
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
@@ -64,14 +63,15 @@ const City = () => {
                 </div>
             </div>
             <div className="col-7" style={{ position: 'relative' }}>
-                <div className={`row city-dialog ${isArenaDialog ? 'is-open' : ''}`}>
+                <div className={`row dialog ${isArenaDialog ? 'is-open' : ''}`}>
                     <ArenaDialog
                         cityId={cityId}
                     />
                 </div>
-                <div className={`row city-dialog ${isAlleyDialog ? 'is-open' : ''}`}>
+                <div className={`row dialog ${isAlleyDialog ? 'is-open' : ''}`}>
                     <AlleyDialog
                         cityId={cityId}
+                        openBattleRolls={openBattleRolls}
                     />
                 </div>
             </div>

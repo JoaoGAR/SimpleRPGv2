@@ -1,14 +1,10 @@
 import './alley.css';
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-const AlleyDialog = ({ cityId }) => {
+const AlleyDialog = ({ cityId, openBattleRolls }) => {
 
     const [listNPCs, setListNPCs] = useState([]);
-    const navigate = useNavigate();
-
-    const [enemy, setEnemy] = useState(null);
 
     async function getNPCs() {
         const structureId = cityId;
@@ -35,7 +31,7 @@ const AlleyDialog = ({ cityId }) => {
         }
 
         const data = response.data;
-        console.log(data);
+        openBattleRolls(data);
     }
 
     useEffect(() => {

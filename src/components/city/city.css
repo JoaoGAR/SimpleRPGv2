@@ -1,3 +1,9 @@
+.dialog {
+    margin-top: 20px;
+    height: 820px;
+    width: 100%;
+}
+
 .city-background {
     background-position: center;
     background-repeat: no-repeat;
