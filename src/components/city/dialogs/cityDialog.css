@@ -1,0 +1,42 @@
+.city-dialog {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.70);
+    border-radius: 20px 20px 20px 20px;
+    border: 2px outset #000000f1;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+    visibility: hidden;
+    z-index: 1000;
+    margin-top: 20px;
+    height: 820px;
+    position: absolute;
+    width: 100%;
+}
+
+.city-dialog.is-open {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.city-dialog .header {
+    background-color: rgba(0, 0, 0, 0.800);
+    border-radius: 20px 20px 0 0;
+    border: 2px outset #000000f1;
+}
+
+.city-dialog .body {
+    padding-inline: 10px;
+    padding-top: 10px;
+}
+
+.city-dialog .footer {
+    width: 100%;
+    min-height: 30px;
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.800);
+    border-radius: 0 0 20px 20px;
+    border: 2px outset #000000f1;
+}

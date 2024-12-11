@@ -13,54 +13,6 @@ html {
     position: fixed;
 }
 
-.shortcut-bar-modern {
-    position: fixed;
-    bottom: 15px;
-    right: 0;
-    height: 60px;
-    width: 230px;
-    background: radial-gradient(circle, rgba(40, 40, 40, 0.9) 15%, rgba(46, 46, 46, 0.9) 70%);
-    border-radius: 10px 0 0 10px;
-    border: 1px outset rgb(15, 15, 15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-}
-
-.shortcut-item-modern {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(180deg, #745b40, rgb(66, 54, 37)) padding-box, linear-gradient(180deg, #ffe695, rgb(146, 95, 0)) border-box;
-    border: 4px solid transparent;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-    box-shadow: inset 0 0 5px #000000;
-    backdrop-filter: blur(5px);
-    margin: 2px;
-}
-
-.shortcut-item-modern i {
-    font-size: 30px;
-    color: white;
-}
-
-.shortcut-item-modern img {
-    width: 50px;
-    height: 50px;
-    transition: all 0.3s ease;
-    filter: drop-shadow(2.5px 2px 1px #000000bd);
-}
-
-.shortcut-item-modern:hover img {
-    transform: translateY(-3px) scale(1.1);
-}
-
-.shortcut-item-modern .badge {
-    padding: 7px;
-}
-
 .character-info {
     position: fixed;
     top: 70px;

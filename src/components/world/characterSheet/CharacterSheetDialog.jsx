@@ -40,7 +40,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose, openItemInfoDialog
         setClassColor1(character.class.color1);
         setClassColor2(character.class.color2);
         setExperience(character.experience)
-        setCharacterSkills(character.skill);
+        setCharacterSkills(character.skills);
         setCharacterAttributes(character.attributes);
     }
 

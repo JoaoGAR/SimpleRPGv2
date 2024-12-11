@@ -1,0 +1,33 @@
+.npcs .option {
+    height: 70px;
+    background-color: rgba(29, 29, 29, 0.7);
+    border-radius: 20px 20px 20px 20px;
+    border: 1px outset #000000f1;
+    color: white;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.npcs .option:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.npcs .option img {
+    height: 68px;
+    width: 68px;
+    border-radius: 20px 0 0 20px;
+}
+
+.npcs .npc-armor-class {
+    filter: grayscale(1) invert(1);
+}
+
+.npcs .npc-ability {
+    font-size: 18px;
+}
+
+.npcs .npc-ability .ability-icon {
+    border-radius: 100%;
+    border: 1px outset #000000f1;
+}

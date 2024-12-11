@@ -6,7 +6,7 @@ import { ToastContainer, toast, Flip } from "react-toastify";
 
 const SkillbookDialog = ({ character, isOpen, onClose, setCharacter }) => {
     const [listSkills, setListSkills] = useState([]);
-    const [listCharacterSkills, setListCharacterSkills] = useState(character.skill);
+    const [listCharacterSkills, setListCharacterSkills] = useState(character.skills);
     const [listCharacterAttributes, setListCharacterAttributes] = useState(character.attributes);
     const [classPoints, setClassPoints] = useState(character.classPoints);
     const [skillPoints, setSkillPoints] = useState(character.skillPoints);

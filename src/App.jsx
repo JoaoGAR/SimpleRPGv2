@@ -11,6 +11,7 @@ import CharacterCreation from './components/character/CharacterCreation';
 import Index from './components/world/Index';
 
 import City from './components/city/City';
+import BattleCamp from './components/battle/battleCamp';
 
 import { AuthProvider } from './context/AuthContext';
 
@@ -49,6 +50,13 @@ function App() {
                         element={
                             <PrivateRoute>
                                 <City />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route path="/battle/:targetId/:locationId"
+                        element={
+                            <PrivateRoute>
+                                <BattleCamp />
                             </PrivateRoute>
                         }
                     />

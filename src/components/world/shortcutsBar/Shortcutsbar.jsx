@@ -1,3 +1,4 @@
+import './shortcutsbar.css';
 import React, { useState } from 'react';
 import QueueDialog from '../queue/QueueDialog';
 import InventoryDialog from '../inventory/InventoryDialog';

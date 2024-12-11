@@ -1,0 +1,113 @@
+.battle-screen {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    z-index: 0;
+}
+
+.player-sprite img {
+    width: 700px;
+    height: auto;
+    mix-blend-mode: multiply;
+    position: relative;
+    top: 300px;
+    left: 70px;
+}
+
+.enemy-sprite img {
+    width: 350px;
+    height: auto;
+    mix-blend-mode: multiply;
+    position: relative;
+    top: 20px;
+    left: 200px;
+}
+
+.player-abilities {
+    height: 200px;
+    width: 800px;
+    position: fixed;
+    bottom: 0;
+    left: 450px;
+}
+
+.battle-rolls {
+    background-color: rgba(255, 255, 255, 0.774);
+    width: 400px;
+    height: 500px;
+    position: fixed;
+    bottom: 0;
+    right: 10px;
+}
+
+.ability-option {
+    background-color: rgb(30, 30, 30);
+    border: 2px outset #000000f1;
+    border-radius: 0 10px 0 10px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s ease;
+    transform: scale(0.99);
+}
+
+.ability-option:hover {
+    background-color: rgb(60, 60, 60);
+    transform: scale(1);
+}
+
+.ability-icon {
+    border-radius: 100%;
+    border: 1px outset #000000f1;
+}
+
+.enemy-status {
+    width: 700px;
+    position: fixed;
+    top: 80px;
+    left: 500px;
+}
+
+.player-name,
+.enemy-name {
+    color: white;
+    background-color: rgb(0, 0, 0);
+    border: 2px outset #000000f1;
+    border-radius: 0 0 0 0;
+    height: 30px;
+}
+
+.player-name img,
+.enemy-name img {
+    filter: grayscale(1) invert(1);
+}
+
+.battle-screen .progress {
+    height: 30px;
+}
+
+.attack-effect {
+    filter: grayscale(1) invert(1);
+}
+
+.enemy-sprite.attack-effect img {
+    animation: damage-effect 0.5s ease;
+}
+
+@keyframes damage-effect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

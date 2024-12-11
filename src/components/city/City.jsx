@@ -1,4 +1,5 @@
-import "./city.css";
+import './city.css';
+import './dialogs/cityDialog.css';
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useParams } from 'react-router-dom';
@@ -6,12 +7,12 @@ import Axios from 'axios';
 import { ToastContainer, toast, Flip } from "react-toastify";
 
 import CityShortcuts from './CityShortcuts';
+import AlleyDialog from './dialogs/alley/AlleyDialog';
+import ArenaDialog from './dialogs/arena/ArenaDialog';
 
 const City = () => {
 
     const { auth } = useContext(AuthContext);
-    const [selectedItem, setSelectedItem] = useState(null);
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
@@ -28,17 +29,13 @@ const City = () => {
         }
     }
 
-    const handleMouseMove = (event) => {
-        setMousePosition({
-            x: event.clientX,
-            y: event.clientY
-        });
-    };
+    const [isAlleyDialog, setIsAlleyDialog] = useState(false);
+    const [isArenaDialog, setIsArenaDialog] = useState(false);
 
-    const openItemInfoDialog = (item, equiped) => {
-        setSelectedItem({ ...item, equiped: equiped });
+    const closeAllDialogs = () => {
+        setIsAlleyDialog(false);
+        setIsArenaDialog(false);
     };
-    const closeItemInfoDialog = () => setSelectedItem(null);
 
     useEffect(() => {
         getStructure();
@@ -46,7 +43,7 @@ const City = () => {
 
     return (
         <div className="row row-cols-2 city-background" style={{ backgroundImage: `url(../../${structure.image})` }}>
-            <div className="col-5">
+            <div className="col-3">
                 <div className="row text-uppercase">
                     <ul className="text-center mt-2">
                         <li style={{ "--accent-color": "#0B374D" }}>
@@ -60,13 +57,26 @@ const City = () => {
                     <CityShortcuts
                         character={character}
                         setCharacter={setCharacter}
-                        setSelectedItem={setSelectedItem}
-                        openItemInfoDialog={openItemInfoDialog}
-                        closeItemInfoDialog={closeItemInfoDialog}
+                        closeAllDialogs={closeAllDialogs}
+                        setIsAlleyDialog={setIsAlleyDialog}
+                        setIsArenaDialog={setIsArenaDialog}
                     />
                 </div>
             </div>
-            <div className="col-7">
+            <div className="col-7" style={{ position: 'relative' }}>
+                <div className={`row city-dialog ${isArenaDialog ? 'is-open' : ''}`}>
+                    <ArenaDialog
+                        cityId={cityId}
+                    />
+                </div>
+                <div className={`row city-dialog ${isAlleyDialog ? 'is-open' : ''}`}>
+                    <AlleyDialog
+                        cityId={cityId}
+                    />
+                </div>
+            </div>
+            <div className='col-1'>
+                <p>lateral</p>
             </div>
         </div>
     );

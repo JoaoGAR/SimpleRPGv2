@@ -147,7 +147,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
                 </div>
                 <div className="col inventory-items">
                     <div className="row row-cols-6">
-                        {typeof listInventory !== "undefined" && listInventory.map((inventoryItem) => {
+                        {Array.isArray(listInventory) && listInventory.map((inventoryItem) => {
                             return (
                                 <ItemBox
                                     key={inventoryItem.id}
