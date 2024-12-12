@@ -1,4 +1,3 @@
-import "../dialogs/dialogs.css";
 import "./characterSheetDialog.css";
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
@@ -190,7 +189,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                 <div className="col-4 ms-3">
                     <div className="row row-cols-1">
                         <div className="row row-cols-6 justify-content-center">
-                            {listCharacterAttributes !== 'undefined' && listCharacterAttributes.map((characterAttribute) => (
+                            {Array.isArray(listCharacterAttributes) && listCharacterAttributes.map((characterAttribute) => (
                                 <div key={characterAttribute.id} className="col attribute-box" style={{ backgroundImage: `url(${characterAttribute.attributes.icon})` }}>
                                     <div className="row text-center">
                                         <span>{characterAttribute.level}</span>
@@ -200,7 +199,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                         </div>
 
                         <div className="row row-cols-5 justify-content-center">
-                            {listCharacterSkills !== 'undefined' && listCharacterSkills.map((characterSkill) => (
+                            {Array.isArray(listCharacterSkills) && listCharacterSkills.map((characterSkill) => (
                                 <div key={characterSkill.id} className="col skill-box" style={{ backgroundImage: `url(${characterSkill.skill.icon})` }}>
                                     <div className="row text-center">
                                         <span>{characterSkill.level}</span>
@@ -209,7 +208,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                             ))}
                         </div>
                         <div className="row row-cols-4 mt-2 justify-content-center">
-                            {listWeaponAbilities !== 'undefined' && listWeaponAbilities.map((weaponAbility) => (
+                            {Array.isArray(listWeaponAbilities) && listWeaponAbilities.map((weaponAbility) => (
                                 <div key={weaponAbility.id} className="col weapon-ability-box" style={{ backgroundImage: `url(${weaponAbility.ability.icon})` }}>
                                     <div className="row text-center">
                                         <span>{weaponAbility.attack}</span>

@@ -28,7 +28,7 @@ const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDi
         <>
             <div key="shortcut" className="shortcut-bar-modern d-flex justify-content-start align-items-center px-3">
                 <div className="shortcut-item-modern" onClick={openQueueDialog}>
-                    <img src="./world/icons/workQueue.png" alt="Skill book icon" />
+                    <img src="./world/icons/workQueue2.png" alt="Skill book icon" />
                 </div>
                 <div className="shortcut-item-modern" onClick={openSkillBookDialog}>
                     <img src="./world/icons/skillbook.png" alt="Skill book icon" />
@@ -40,19 +40,16 @@ const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDi
                     <img src="./world/icons/backpack.png" alt="Skill book icon" />
                 </div>
             </div>
-            <div className={`dialog queue-dialog ${isQueueDialog ? 'is-open' : ''}`}
-                style={{
-                    left: "50%",
-                    top: "50%",
-                }}>
-                <QueueDialog character={character} isOpen={isQueueDialog} onClose={closeQueueDialog} setCharacter={setCharacter} />
+            <div className={`dialog ${isQueueDialog ? 'is-open' : ''}`}>
+                <QueueDialog
+                    character={character}
+                    isOpen={isQueueDialog}
+                    onClose={closeQueueDialog}
+                    setCharacter={setCharacter}
+                />
             </div>
 
-            <div className={`dialog inventory-dialog ${isInventoryDialog ? 'is-open' : ''}`}
-                style={{
-                    left: "50%",
-                    top: "50%",
-                }}>
+            <div className={`dialog ${isInventoryDialog ? 'is-open' : ''}`}>
                 <InventoryDialog
                     character={character}
                     isOpen={isInventoryDialog}
@@ -64,12 +61,13 @@ const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDi
                 />
             </div>
 
-            <div className={`dialog skillbook-dialog ${isSkillBookDialog ? 'is-open' : ''}`}
-                style={{
-                    left: "50%",
-                    top: "50%",
-                }}>
-                <SkillbookDialog character={character} isOpen={isSkillBookDialog} onClose={closeSkillBookDialog} setCharacter={setCharacter} />
+            <div className={`dialog ${isSkillBookDialog ? 'is-open' : ''}`}>
+                <SkillbookDialog
+                    character={character}
+                    isOpen={isSkillBookDialog}
+                    onClose={closeSkillBookDialog}
+                    setCharacter={setCharacter}
+                />
             </div>
         </>
     );

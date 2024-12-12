@@ -1,10 +1,7 @@
-import "../dialogs/dialogs.css"
 import "./jobInfoDialog.css"
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { ToastContainer, toast, Flip } from 'react-toastify';
-
-import ItemInfoDialog from '../item/ItemInfoDialog';
 
 const JobsInfoDialog = ({ job, isOpen, onClose, openItemInfoDialog, closeItemInfoDialog }) => {
 

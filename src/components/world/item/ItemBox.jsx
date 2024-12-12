@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useItemInfo } from '../../../context/ItemInfoContext';
 
-const ItemBox = ({ item, inventoryId, openItemInfoDialog, closeItemInfoDialog, equipItem, equiped }) => {
+const ItemBox = ({ item, inventoryId, equipItem, equiped }) => {
+
+    const { openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
 
     const itemGradientStyle = {
         '--item-gradient': `radial-gradient(circle, ${item.tier.background} 5%, rgba(66, 66, 66, 0.01) 70%)`

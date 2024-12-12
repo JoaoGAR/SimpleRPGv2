@@ -2,7 +2,8 @@ import React from 'react';
 import { useItemInfo } from '../../../context/ItemInfoContext';
 
 const EquipmentSlot = ({ item, inventoryId, equipItem, height, offset, col, margin }) => {
-    const { handleMouseMove, openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
+
+    const { openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
 
     return (
         <div

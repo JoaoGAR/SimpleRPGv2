@@ -1,9 +1,8 @@
-import "../dialogs/dialogs.css"
-import "./inventoryDialog.css"
+import './inventoryDialog.css'
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import EquipmentSlot from "../item/EquipmentSlot";
-import ItemBox from "../item/ItemBox";
+import EquipmentSlot from '../item/EquipmentSlot';
+import ItemBox from '../item/ItemBox';
 
 const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelectedItem, openItemInfoDialog, closeItemInfoDialog }) => {
 
@@ -20,7 +19,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
     const [feetEquipment, setFeetEquipment] = useState([]);
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/api/inventory/get").then((response) => {
+        Axios.get('http://localhost:3001/api/inventory/get').then((response) => {
             const inventory = response.data;
             setListInventory(inventory);
             setEquipedItems();
@@ -78,7 +77,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
     if (!isOpen) return null;
 
     const equipItem = async (inventoryId, equiped) => {
-        const response = await Axios.post("http://localhost:3001/api/inventory/equip/item", {
+        const response = await Axios.post('http://localhost:3001/api/inventory/equip/item', {
             inventoryId,
             equiped,
         });
@@ -91,86 +90,87 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
     };
 
     return (
-        <>
-            <div className="row row-cols-3 dialog-header align-items-center">
-                <div className="col-2">
-                    <i className="bi bi-backpack2"></i>
+        <div className='row row-cols-2 justify-content-center'>
+            <div className='inventory-dialog'>
+                <div className='row row-cols-3 header align-items-center'>
+                    <div className='col-2'>
+                        <i className='bi bi-backpack2'></i>
+                    </div>
+                    <div className='col-8 inventory-title text-center'>
+                        <h6 className='text-uppercase fw-bold'>inventário {listInventory.length}/{inventorySize}</h6>
+                    </div>
+                    <div className='col-2 d-flex justify-content-end align-items-end'>
+                        <button className='btn btn-sm btn-danger' onClick={onClose}><i className='bi bi-x'></i></button>
+                    </div>
                 </div>
-                <div className="col-8 inventory-title text-center">
-                    <h6 className="text-uppercase fw-bold">inventário {listInventory.length}/{inventorySize}</h6>
-                </div>
-                <div className="col-2 d-flex justify-content-end align-items-end">
-                    <button className="btn btn-sm btn-danger" onClick={onClose}><i className="bi bi-x"></i></button>
-                </div>
-            </div>
-            <div className="row row-cols-2 dialog-body">
-                <div className="col-1 inventory-equipment">
-                    <div className="row row-cols-3">
-                        <div className="col-3">
-                            <div className="row row-cols-1">
-                                {[
-                                    { item: headEquipment, col: '12' },
-                                    { item: bodyEquipment, col: '12' },
-                                    { item: legsEquipment, col: '12' },
-                                    { item: handsEquipment, col: '12' },
-                                    { item: feetEquipment, col: '12' },
-                                    { item: mainHand, col: '12' },
-                                    { item: offHand, col: '12' },
-                                ].map(({ item, col }, index) => (
-                                    <EquipmentSlot
-                                        key={index}
-                                        item={item}
-                                        openItemInfoDialog={openItemInfoDialog}
-                                        closeItemInfoDialog={closeItemInfoDialog}
-                                        offset={null}
-                                        col={col}
-                                        margin={'mx-2 my-1'}
-                                    />
-                                ))}
+                <div className='row row-cols-2 body'>
+                    <div className='col-6 inventory-equipment'>
+                        <div className='row row-cols-3'>
+                            <div className='col-3'>
+                                <div className='row row-cols-1'>
+                                    {[
+                                        { item: headEquipment, col: '12' },
+                                        { item: bodyEquipment, col: '12' },
+                                        { item: legsEquipment, col: '12' },
+                                        { item: handsEquipment, col: '12' },
+                                        { item: feetEquipment, col: '12' },
+                                        { item: mainHand, col: '12' },
+                                        { item: offHand, col: '12' },
+                                    ].map(({ item, col }, index) => (
+                                        <EquipmentSlot
+                                            key={index}
+                                            item={item}
+                                            openItemInfoDialog={openItemInfoDialog}
+                                            closeItemInfoDialog={closeItemInfoDialog}
+                                            offset={null}
+                                            col={col}
+                                            margin={'mx-2 my-1'}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                        <div className="col-8">
-                            <div className="row row-cols-2 align-items-end justify-content-start silhouette">
-                                <div className="col text-center">
-                                    <div className="row align-items-center armor-class">
-                                        <div className="col-12">
-                                            <h1>{character.armorClass}</h1>
+                            <div className='col-8'>
+                                <div className='row row-cols-2 align-items-end justify-content-start silhouette'>
+                                    <div className='col text-center'>
+                                        <div className='row align-items-center armor-class'>
+                                            <div className='col-12'>
+                                                <h1>{character.armorClass}</h1>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="row">
+                        <div className='row'>
 
+                        </div>
                     </div>
-                </div>
-                <div className="col inventory-items">
-                    <div className="row row-cols-6">
-                        {Array.isArray(listInventory) && listInventory.map((inventoryItem) => {
-                            return (
-                                <ItemBox
-                                    key={inventoryItem.id}
-                                    item={inventoryItem.item}
-                                    inventoryId={inventoryItem.id}
-                                    setSelectedItem={setSelectedItem}
-                                    openItemInfoDialog={openItemInfoDialog}
-                                    closeItemInfoDialog={closeItemInfoDialog}
-                                    equipItem={equipItem}
-                                    equiped={inventoryItem.equiped}
-                                />
-                            );
-                        })}
+                    <div className='col-6 inventory-items mt-2'>
+                        <div className='row row-cols-8'>
+                            {Array.isArray(listInventory) && listInventory.map((inventoryItem) => {
+                                return (
+                                    <ItemBox
+                                        key={inventoryItem.id}
+                                        item={inventoryItem.item}
+                                        inventoryId={inventoryItem.id}
+                                        setSelectedItem={setSelectedItem}
+                                        openItemInfoDialog={openItemInfoDialog}
+                                        closeItemInfoDialog={closeItemInfoDialog}
+                                        equipItem={equipItem}
+                                        equiped={inventoryItem.equiped}
+                                    />
+                                );
+                            })}
+                        </div>
                     </div>
-                </div>
-            </div >
-            <div className="row row-cols-3 d-flex justify-content-end align-items-end dialog-footer">
-                <div className="col-2">
-                    <p style={{ color: 'yellow' }}><img className="img-fluid" style={{ height: '20px', width: '20px' }} src="./items/common/coin.png" alt="Golds coin" /> {character.gold}</p>
+                </div >
+                <div className='row row-cols-3 d-flex justify-content-end align-items-end'>
+                    <div className='col-2'>
+                        <p style={{ color: 'yellow' }}><img className='img-fluid' style={{ height: '20px', width: '20px' }} src='./items/common/coin.png' alt='Golds coin' /> {character.gold}</p>
+                    </div>
                 </div>
             </div>
-
-        </>
+        </div>
     );
 };
 

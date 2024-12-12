@@ -1,5 +1,4 @@
 import "./structuresWidget.css"
-import "../dialogs/dialogs.css";
 import { useNavigate } from 'react-router-dom';
 
 const StructuresWidget = ({ structure }) => {
