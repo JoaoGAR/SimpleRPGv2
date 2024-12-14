@@ -81,8 +81,8 @@ const Map = ({ mapUrl, jobs, structures, character, setCharacter, openItemInfoDi
                 {typeof structures !== "undefined" && structures.map((structure) => (
                     <StructuresWidget key={structure.id} structure={structure} />
                 ))}
-                {typeof jobs !== "undefined" && jobs.map((job) => (
-                    <JobsWidget key={job.id} job={job} character={character} />
+                {typeof jobs !== "undefined" && jobs.map((jobLocation) => (
+                    <JobsWidget key={jobLocation.id} jobLocation={jobLocation} character={character} />
                 ))}
                 <CharacterWidget character={character} />
             </div>

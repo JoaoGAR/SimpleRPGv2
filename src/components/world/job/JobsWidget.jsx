@@ -2,14 +2,16 @@ import "./jobWidgets.css"
 import React, { useState } from 'react';
 import JobsInfoDialog from './JobsInfoDialog';
 
-const JobsWidget = ({ job }) => {
+const JobsWidget = ({ jobLocation }) => {
+
+    const job = jobLocation.job;
+    const coordsx = jobLocation.coordsx;
+    const coordsy = jobLocation.coordsy;
 
     const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);
 
     const openJobDialog = () => { setIsJobDialogOpen(false); setIsJobDialogOpen(true) };
     const closeJobDialog = () => setIsJobDialogOpen(false);
-    const coordsx = job.coordsx;
-    const coordsy = job.coordsy;
     const widgetBackground = { '--widget-background': `${job.attribute.color}60` };
 
     return (
@@ -19,8 +21,8 @@ const JobsWidget = ({ job }) => {
                 style={{
                     ...widgetBackground,
                     position: 'absolute',
-                    left: `${job.coordsx}px`,
-                    top: `${job.coordsy}px`,
+                    left: `${coordsx}px`,
+                    top: `${coordsy}px`,
                 }}
                 onClick={openJobDialog}
             >
