@@ -1,10 +1,9 @@
 .character-sheet-dialog {
+    background-color: rgb(65, 65, 65);
     border-radius: 20px 20px 20px 20px;
-    border: 5px outset #141414e5;
-    width: 890px;
-    height: 70%;
-    max-height: 70%;
-    z-index: 1000;
+    border: 2px outset #141414e5;
+    padding-bottom: 20px;
+    z-index: 1002;
 }
 
 .character-sheet-dialog .item-box {

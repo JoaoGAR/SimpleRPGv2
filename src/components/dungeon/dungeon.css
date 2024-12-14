@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-.city-background {
+.dungeon-background {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -12,14 +12,13 @@
     transition: all 0.6s ease;
 }
 
-.city-icon {
+.dungeon-icon {
     height: 90%;
     width: 80px;
     border-radius: 100%;
-    box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.80);
 }
 
-.city-background ul {
+.dungeon-background ul {
     --col-gap: 5rem;
     --barH: 1rem;
     --roleH: 2rem;
@@ -31,7 +30,7 @@
     padding-inline: calc(var(--col-gap) / 2);
 }
 
-.city-background ul li {
+.dungeon-background ul li {
     width: 10em;
     display: grid;
     grid-template:
@@ -56,7 +55,7 @@
 }
 
 /* bar */
-.city-background ul li::before {
+.dungeon-background ul li::before {
     content: "";
     grid-area: role;
     height: var(--barH);
@@ -74,7 +73,7 @@
 }
 
 /* role */
-.city-background ul li::after {
+.dungeon-background ul li::after {
     content: "";
     grid-area: role;
     background: var(--accent-color);
@@ -87,23 +86,23 @@
     height: var(--roleH);
 }
 
-.city-background ul li .icon,
-.city-background ul li .title,
-.city-background ul li .descr {
+.dungeon-background ul li .icon,
+.dungeon-background ul li .title,
+.dungeon-background ul li .descr {
     padding-inline: 1rem;
     color: white;
     text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 
-.city-background ul li .icon {
+.dungeon-background ul li .icon {
     font-size: 3rem;
 }
 
-.city-background ul li .title {
+.dungeon-background ul li .title {
     font-size: 1.25rem;
     font-weight: 700;
 }
 
-.city-background ul li .descr {
+.dungeon-background ul li .descr {
     font-size: 0.9rem;
 }

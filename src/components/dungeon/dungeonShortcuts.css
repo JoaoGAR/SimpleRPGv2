@@ -1,8 +1,8 @@
-.city-shortcut h5 {
+.dungeon-shortcut h5 {
     margin: 0;
 }
 
-.city-shortcut {
+.dungeon-shortcut {
     margin-top: 5px;
     padding: 5px;
     text-transform: uppercase;
@@ -16,6 +16,6 @@
     transition: all 0.2s ease;
 }
 
-.city-shortcut:hover {
+.dungeon-shortcut:hover {
     transform: scalex(1.1);
 }

@@ -26,13 +26,13 @@
 
 
 /* HTML: <div class="ribbon">Your text content</div> */
-.ribbon {
+.battle-rolls-dialog .ribbon {
     font-size: 28px;
     font-weight: bold;
     color: #fff;
 }
 
-.ribbon {
+.battle-rolls-dialog .ribbon {
     --s: 3em;
     /* the ribbon size */
     --d: .3em;
