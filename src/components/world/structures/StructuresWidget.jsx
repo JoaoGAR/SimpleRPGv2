@@ -5,7 +5,9 @@ const StructuresWidget = ({ structure }) => {
 
     const navigate = useNavigate();
     const structureName = structure.name.replace(/ /g, '-');
-    const openCityDialog = () => { navigate(`/city/${structureName}/${structure.id}`); };
+    const structureType = structure.type === 1 ? 'city' : 'dungeon';
+
+    const openCityDialog = () => { navigate(`/${structureType}/${structureName}/${structure.id}`); };
 
     return (
         <div>

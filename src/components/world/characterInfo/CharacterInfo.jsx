@@ -15,7 +15,7 @@ const CharacterInfo = ({ character, openCharacterSheetDialog }) => {
     let requiredXPPercentage = (currentXP / levelXP) * 100;
 
     return (
-        <div className="row row-cols-1 character-info" style={{ cursor: 'pointer' }} onClick={() => openCharacterSheetDialog()}>
+        <div className="row row-cols-1 character-info" style={{ cursor: 'pointer' }} onClick={() => openCharacterSheetDialog(character.id)}>
             <div className="col character-name text-center">
                 <span>{character.name}</span>
             </div>

@@ -2,8 +2,8 @@ import "./jobWidgets.css"
 import React, { useState } from 'react';
 import JobsInfoDialog from './JobsInfoDialog';
 
-const JobsWidget = ({ job, openItemInfoDialog, closeItemInfoDialog }) => {
-    
+const JobsWidget = ({ job }) => {
+
     const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);
 
     const openJobDialog = () => { setIsJobDialogOpen(false); setIsJobDialogOpen(true) };
@@ -29,11 +29,8 @@ const JobsWidget = ({ job, openItemInfoDialog, closeItemInfoDialog }) => {
                 </div>
             </span>
 
-            <div className={`dialog job-info-dialog col-3 ${isJobDialogOpen ? 'is-open' : ''}`} style={{
-                left: `${coordsx}px`,
-                top: `${coordsy}px`,
-            }}>
-                <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} openItemInfoDialog={openItemInfoDialog} closeItemInfoDialog={closeItemInfoDialog} />
+            <div className={`dialog ${isJobDialogOpen ? 'is-open' : ''}`}>
+                <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} />
             </div>
 
         </div>

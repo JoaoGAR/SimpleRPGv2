@@ -1,14 +1,14 @@
-import "./world.css";
+import './world.css';
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useItemInfo } from '../../context/ItemInfoContext';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import Axios from 'axios';
 
-import Map from "./map/Map";
-import Shortcutsbar from "./shortcutsBar/Shortcutsbar";
-import CharacterInfo from "./characterInfo/CharacterInfo";
-import CharacterSheetDialog from "./characterSheet/CharacterSheetDialog";
+import Map from './map/Map';
+import Shortcutsbar from './shortcutsBar/Shortcutsbar';
+import CharacterInfo from './characterInfo/CharacterInfo';
+import CharacterSheetDialog from './characterSheet/CharacterSheetDialog';
 
 const Index = () => {
 
@@ -16,25 +16,32 @@ const Index = () => {
     const { handleMouseMove } = useItemInfo();
 
     const [isCharacterSheetDialog, setCharacterSheetDialog] = useState(false);
+    const [inspecCharacterId, setInspecCharacterId] = useState(null);
     const [listJobs, setListJobs] = useState();
     const [listStructures, setListStructures] = useState();
     const [character, setCharacter] = useState(auth.user.character);
     const mapaUrl = './world/Ticalor.webp';
 
-    const openCharacterSheetDialog = () => setCharacterSheetDialog(true);
-    const closeCharacterSheetDialog = () => setCharacterSheetDialog(false);
+    const openCharacterSheetDialog = (characterId) => {
+        setInspecCharacterId(characterId);
+        setCharacterSheetDialog(true);
+    };
+    const closeCharacterSheetDialog = () => {
+        setCharacterSheetDialog(false);
+        setInspecCharacterId(null);
+    };
 
     useEffect(() => {
-        Axios.get("http://localhost:3001/api/job/get").then((response) => {
+        Axios.get('http://localhost:3001/api/job/get').then((response) => {
             setListJobs(response.data);
         });
-        Axios.get("http://localhost:3001/api/structure/get").then((response) => {
+        Axios.get('http://localhost:3001/api/structure/get').then((response) => {
             setListStructures(response.data);
         });
     }, [character]);
 
     return (
-        <div className="game-container" onMouseMove={handleMouseMove}>
+        <div className='game-container' onMouseMove={handleMouseMove}>
             <Map
                 mapUrl={mapaUrl}
                 jobs={listJobs}
@@ -49,11 +56,7 @@ const Index = () => {
                 setCharacter={setCharacter}
             />
 
-            <div className={`dialog character-sheet-dialog ${isCharacterSheetDialog ? 'is-open' : ''}`}
-                style={{
-                    left: "50%",
-                    top: "50%",
-                }}>
+            <div className={`dialog ${isCharacterSheetDialog ? 'is-open' : ''}`}>
                 <CharacterSheetDialog
                     characterId={character.id}
                     isOpen={isCharacterSheetDialog}

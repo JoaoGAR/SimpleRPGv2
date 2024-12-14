@@ -91,7 +91,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
 
     return (
         <div className='row row-cols-2 justify-content-center'>
-            <div className='inventory-dialog'>
+            <div className='col-8 inventory-dialog'>
                 <div className='row row-cols-3 header align-items-center'>
                     <div className='col-2'>
                         <i className='bi bi-backpack2'></i>
@@ -107,7 +107,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
                     <div className='col-6 inventory-equipment'>
                         <div className='row row-cols-3'>
                             <div className='col-3'>
-                                <div className='row row-cols-1'>
+                                <div className='row row-cols-1 justify-content-center'>
                                     {[
                                         { item: headEquipment, col: '12' },
                                         { item: bodyEquipment, col: '12' },
@@ -146,7 +146,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
                         </div>
                     </div>
                     <div className='col-6 inventory-items mt-2'>
-                        <div className='row row-cols-8'>
+                        <div className='row row-cols-6'>
                             {Array.isArray(listInventory) && listInventory.map((inventoryItem) => {
                                 return (
                                     <ItemBox
