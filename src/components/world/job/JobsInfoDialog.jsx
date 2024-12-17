@@ -2,7 +2,7 @@ import './jobInfoDialog.css'
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { ToastContainer, toast, Flip } from 'react-toastify';
-import { useItemInfo } from '../../../context/ItemInfoContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 
 const JobsInfoDialog = ({ job, coords, isOpen, onClose }) => {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useItemInfo } from '../../../context/ItemInfoContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 
 const EquipmentSlot = ({ item, inventoryId, equipItem, height, offset, col, margin }) => {
 

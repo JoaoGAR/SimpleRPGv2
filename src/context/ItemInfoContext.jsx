@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
-import ItemInfoDialog from '../components/world/item/ItemInfoDialog';
+import ItemInfoDialog from './ItemInfoDialog';
 
 const ItemInfoContext = createContext();
 

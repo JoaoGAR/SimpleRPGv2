@@ -6,6 +6,8 @@ import { useBattleRolls } from '../../context/BattleContext';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 
+import Shortcutsbar from '../shortcutsBar/Shortcutsbar';
+
 import CityShortcuts from './CityShortcuts';
 import AlleyDialog from './dialogs/alley/AlleyDialog';
 import ArenaDialog from './dialogs/arena/ArenaDialog';
@@ -174,6 +176,10 @@ const City = () => {
             </div>
             <div className='col-2'>
             </div>
+            <Shortcutsbar
+                character={character}
+                setCharacter={setCharacter}
+            />
             <ToastContainer />
         </div>
     );

@@ -4,7 +4,7 @@ import Axios from 'axios';
 import EquipmentSlot from '../item/EquipmentSlot';
 import ItemBox from '../item/ItemBox';
 
-const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelectedItem, openItemInfoDialog, closeItemInfoDialog }) => {
+const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
 
     const inventorySize = character.inventorySize;
 
@@ -120,8 +120,6 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
                                         <EquipmentSlot
                                             key={index}
                                             item={item}
-                                            openItemInfoDialog={openItemInfoDialog}
-                                            closeItemInfoDialog={closeItemInfoDialog}
                                             offset={null}
                                             col={col}
                                             margin={'mx-2 my-1'}
@@ -153,9 +151,6 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter, setSelected
                                         key={inventoryItem.id}
                                         item={inventoryItem.item}
                                         inventoryId={inventoryItem.id}
-                                        setSelectedItem={setSelectedItem}
-                                        openItemInfoDialog={openItemInfoDialog}
-                                        closeItemInfoDialog={closeItemInfoDialog}
                                         equipItem={equipItem}
                                         equiped={inventoryItem.equiped}
                                     />

@@ -53,14 +53,14 @@ function App() {
                     <Route path='/city/:cityName/:cityId'
                         element={
                             <PrivateRoute>
-                                <BattleRollsProvider><City /></BattleRollsProvider>
+                                <ItemInfoProvider><BattleRollsProvider><City /></BattleRollsProvider></ItemInfoProvider>
                             </PrivateRoute>
                         }
                     />
                     <Route path='/dungeon/:cityName/:cityId'
                         element={
                             <PrivateRoute>
-                                <BattleRollsProvider><Dungeon /></BattleRollsProvider>
+                                <ItemInfoProvider><BattleRollsProvider><Dungeon /></BattleRollsProvider></ItemInfoProvider>
                             </PrivateRoute>
                         }
                     />

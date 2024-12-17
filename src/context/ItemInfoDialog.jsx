@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useItemInfo } from '../../../context/ItemInfoContext';
 
 const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, diffy }) => {
 

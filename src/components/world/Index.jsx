@@ -1,12 +1,12 @@
 import './world.css';
 import React, { useContext, useState, useEffect } from 'react';
-import { AuthContext } from '../../context/AuthContext';
-import { useItemInfo } from '../../context/ItemInfoContext';
+import { AuthContext } from '/src/context/AuthContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import Axios from 'axios';
 
 import Map from './map/Map';
-import Shortcutsbar from './shortcutsBar/Shortcutsbar';
+import Shortcutsbar from '../shortcutsBar/Shortcutsbar';
 import CharacterInfo from './characterInfo/CharacterInfo';
 import CharacterSheetDialog from './characterSheet/CharacterSheetDialog';
 

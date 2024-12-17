@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import Axios from 'axios';
 import { ToastContainer, toast, Flip } from 'react-toastify';
-import { useItemInfo } from '../../../context/ItemInfoContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 
 const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, setListJob, setActiveQueue }) => {
 

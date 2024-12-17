@@ -1,10 +1,10 @@
 import './shortcutsbar.css';
 import React, { useState } from 'react';
-import QueueDialog from '../queue/QueueDialog';
-import InventoryDialog from '../inventory/InventoryDialog';
-import SkillbookDialog from '../skillbook/SkillbookDialog';
+import QueueDialog from '../world/queue/QueueDialog';
+import InventoryDialog from '../world/inventory/InventoryDialog';
+import SkillbookDialog from '../world/skillbook/SkillbookDialog';
 
-const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDialog, closeItemInfoDialog }) => {
+const Shortcutsbar = ({ character, setCharacter }) => {
 
     const [isQueueDialog, setIsQueueDialog] = useState(false);
     const [isInventoryDialog, setIsInventoryDialog] = useState(false);
@@ -28,16 +28,16 @@ const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDi
         <>
             <div key="shortcut" className="shortcut-bar-modern d-flex justify-content-start align-items-center px-3">
                 <div className="shortcut-item-modern" onClick={openQueueDialog}>
-                    <img src="./world/icons/workQueue2.png" alt="Skill book icon" />
+                    <img src="/world/icons/workQueue2.png" alt="Skill book icon" />
                 </div>
                 <div className="shortcut-item-modern" onClick={openSkillBookDialog}>
-                    <img src="./world/icons/skillbook.png" alt="Skill book icon" />
+                    <img src="/world/icons/skillbook.png" alt="Skill book icon" />
                     {character.skillPoints > 0 && (
                         <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">!</span>
                     )}
                 </div>
                 <div className="shortcut-item-modern" onClick={openInventoryDialog}>
-                    <img src="./world/icons/backpack.png" alt="Skill book icon" />
+                    <img src="/world/icons/backpack.png" alt="Skill book icon" />
                 </div>
             </div>
             <div className={`dialog ${isQueueDialog ? 'is-open' : ''}`}>
@@ -55,9 +55,6 @@ const Shortcutsbar = ({ character, setCharacter, setSelectedItem, openItemInfoDi
                     isOpen={isInventoryDialog}
                     onClose={closeInventoryDialog}
                     setCharacter={setCharacter}
-                    setSelectedItem={setSelectedItem}
-                    openItemInfoDialog={openItemInfoDialog}
-                    closeItemInfoDialog={closeItemInfoDialog}
                 />
             </div>
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useItemInfo } from '../../../context/ItemInfoContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 
 const ItemBox = ({ item, inventoryId, equipItem, equiped }) => {
 
