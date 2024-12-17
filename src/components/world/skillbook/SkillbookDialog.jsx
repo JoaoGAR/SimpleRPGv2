@@ -151,7 +151,7 @@ const SkillbookDialog = ({ character, isOpen, onClose, setCharacter }) => {
 
     const skillInfo = (skillName, skillImage, skillResume) => {
         setskillInfoName(skillName);
-        setskillInfoImage(`url('${skillImage}')`);
+        setskillInfoImage(`url('/${skillImage}')`);
         setSkillInfoResume(skillResume);
     }
 
@@ -198,7 +198,7 @@ const SkillbookDialog = ({ character, isOpen, onClose, setCharacter }) => {
                                     </div>
                                     <div className='col row row-cols-3 justify-content-center align-items-center'>
                                         <button type='button' className='btn btn-outline-dark attribute-button' onClick={() => removeClassPoint(attribute.id)}><i className='bi bi-dash-circle'></i></button>
-                                        <div className='attribute-img mx-1' style={{ backgroundImage: `url('${attribute.icon}')` }}></div>
+                                        <div className='attribute-img mx-1' style={{ backgroundImage: `url('/${attribute.icon}')` }}></div>
                                         <button type='button' className='btn btn-dark attribute-button' onClick={() => addClassPoint(attribute.id)}><i className='bi bi-plus-circle'></i></button>
                                     </div>
                                 </div>
@@ -211,7 +211,7 @@ const SkillbookDialog = ({ character, isOpen, onClose, setCharacter }) => {
                                             </div>
                                             <div className='col row row-cols-3 justify-content-center align-items-center'>
                                                 <button type='button' className='btn btn-outline-dark skill-button' onClick={() => removeSkillPoint(skill.id)}><i className='bi bi-dash-circle'></i></button>
-                                                <div className='skill-img mx-1' style={{ backgroundImage: `url('${skill.icon}')` }}></div>
+                                                <div className='skill-img mx-1' style={{ backgroundImage: `url('/${skill.icon}')` }}></div>
                                                 <button type='button' className='btn btn-dark skill-button' onClick={() => addSkillPoint(skill.id)}><i className='bi bi-plus-circle'></i></button>
                                             </div>
                                         </div>

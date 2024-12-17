@@ -14,7 +14,7 @@ const EquipmentSlot = ({ item, inventoryId, equipItem, height, offset, col, marg
             style={{ height }}
         >
             {Object.keys(item).length > 0 ? (
-                <img style={{ background: `radial-gradient(circle, ${item.tier.background} 5%, rgba(66, 66, 66, 0.01) 70%)` }} className="img-fluid" src={`../${item.image}`} alt="Item image" />
+                <img style={{ background: `radial-gradient(circle, ${item.tier.background} 5%, rgba(66, 66, 66, 0.01) 70%)` }} className="img-fluid" src={`/${item.image}`} alt="Item image" />
             ) : (
                 <></>
             )}

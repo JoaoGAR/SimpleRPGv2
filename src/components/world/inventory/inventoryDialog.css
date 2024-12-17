@@ -40,7 +40,7 @@
 }
 
 .inventory-equipment .silhouette {
-    background: url('../icons/items/silhouette.png');
+    background: url('/icons/items/silhouette.png');
     background-size: 200px;
     background-position: center;
     background-repeat: no-repeat;
@@ -53,7 +53,7 @@
 }
 
 .inventory-equipment .armor-class {
-    background: url('../icons/items/shield.svg');
+    background: url('/icons/items/shield.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: 103px;

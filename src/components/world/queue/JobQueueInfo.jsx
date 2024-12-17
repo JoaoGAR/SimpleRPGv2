@@ -153,7 +153,7 @@ const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, se
                             >
                                 <img
                                     className='img-fluid'
-                                    src={`../${item.image}t0.png`}
+                                    src={`/${item.image}t0.png`}
                                     alt='Reward Item image'
                                     style={itemGradientStyle}
                                 />

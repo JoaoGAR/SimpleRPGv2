@@ -26,7 +26,7 @@ const ItemBox = ({ item, inventoryId, equipItem, equiped }) => {
 
             <img
                 className="img-fluid"
-                src={`../${item.image}`}
+                src={`/${item.image}`}
                 alt="Item image"
                 style={itemGradientStyle}
             />

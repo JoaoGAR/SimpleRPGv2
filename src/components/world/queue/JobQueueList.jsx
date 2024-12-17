@@ -1,4 +1,3 @@
-import './cardQueue.css'
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 
@@ -30,7 +29,7 @@ const JobQueueList = ({ queue, setListJob, isActive, setActiveQueue }) => {
             <div className='col-3'>
                 <div className='row justify-content-center'>
                     <div className='col-8'>
-                        <img className='job-list-icon' src={`${job.icon}`} alt='Job icon' />
+                        <img className='job-list-icon' src={`/${job.icon}`} alt='Job icon' />
                     </div>
                 </div>
             </div>

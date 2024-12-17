@@ -3,6 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
 import { useBattleRolls } from '../../context/BattleContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 
@@ -17,6 +18,7 @@ const City = () => {
 
     const { auth } = useContext(AuthContext);
     const { openBattleRolls } = useBattleRolls();
+    const { handleMouseMove } = useItemInfo();
 
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
@@ -133,7 +135,7 @@ const City = () => {
     }, [character]);
 
     return (
-        <div className="row row-cols-3 city-background" style={{ backgroundImage: `url(../../${structure.image})` }}>
+        <div className="row row-cols-3 city-background" style={{ backgroundImage: `url(../../${structure.image})` }} onMouseMove={handleMouseMove}>
             <div className="col-3">
                 <div className="row text-uppercase">
                     <ul className="text-center mt-2">
