@@ -19,7 +19,18 @@ const City = () => {
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
     const [character, setCharacter] = useState(auth.user.character);
+    const [isCharacterSheetDialog, setCharacterSheetDialog] = useState(false);
+    const [inspecCharacterId, setInspecCharacterId] = useState(null);
     const distance = Math.sqrt((structure.coordsx - character.coordsx) ** 2 + (structure.coordsy - character.coordsy) ** 2);
+
+    const openCharacterSheetDialog = (characterId) => {
+        setInspecCharacterId(characterId);
+        setCharacterSheetDialog(true);
+    };
+    const closeCharacterSheetDialog = () => {
+        setCharacterSheetDialog(false);
+        setInspecCharacterId(null);
+    };
 
     async function getStructure() {
         const structureId = cityId;
@@ -115,8 +126,12 @@ const City = () => {
         getStructure();
     }, []);
 
+    useEffect(() => {
+        setCharacter(auth.user.character);
+    }, [character]);
+
     return (
-        <div className="row row-cols-2 city-background" style={{ backgroundImage: `url(../../${structure.image})` }}>
+        <div className="row row-cols-3 city-background" style={{ backgroundImage: `url(../../${structure.image})` }}>
             <div className="col-3">
                 <div className="row text-uppercase">
                     <ul className="text-center mt-2">
@@ -157,8 +172,7 @@ const City = () => {
                     />
                 </div>
             </div>
-            <div className='col-1'>
-                <p>lateral</p>
+            <div className='col-2'>
             </div>
             <ToastContainer />
         </div>

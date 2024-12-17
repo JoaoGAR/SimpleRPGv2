@@ -38,6 +38,7 @@ const Index = () => {
         Axios.get('http://localhost:3001/api/structure/get').then((response) => {
             setListStructures(response.data);
         });
+        setCharacter(auth.user.character);
     }, [character]);
 
     return (
