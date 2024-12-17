@@ -8,6 +8,12 @@
     margin-top: 60px;
 }
 
+.job-queue-info .reward-box {
+    background-color: rgba(0, 0, 0, 0.801);
+    border: 2px inset #303030c5;
+    border-radius: 10px 10px 10px 10px;
+}
+
 .job-queue-info .ribbon {
     font-size: 25px;
     font-weight: bold;

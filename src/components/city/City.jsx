@@ -1,5 +1,6 @@
 import './city.css';
 import React, { useContext, useState, useEffect } from 'react';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
 import { useBattleRolls } from '../../context/BattleContext';
 import { useParams } from 'react-router-dom';
@@ -8,6 +9,7 @@ import Axios from 'axios';
 import CityShortcuts from './CityShortcuts';
 import AlleyDialog from './dialogs/alley/AlleyDialog';
 import ArenaDialog from './dialogs/arena/ArenaDialog';
+import MarketDialog from './dialogs/market/MarketDialog';
 
 const City = () => {
 
@@ -17,6 +19,7 @@ const City = () => {
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
     const [character, setCharacter] = useState(auth.user.character);
+    const distance = Math.sqrt((structure.coordsx - character.coordsx) ** 2 + (structure.coordsy - character.coordsy) ** 2);
 
     async function getStructure() {
         const structureId = cityId;
@@ -31,10 +34,81 @@ const City = () => {
 
     const [isAlleyDialog, setIsAlleyDialog] = useState(false);
     const [isArenaDialog, setIsArenaDialog] = useState(false);
+    const [isMarketDialog, setIsMarketDialog] = useState(false);
 
     const closeAllDialogs = () => {
         setIsAlleyDialog(false);
         setIsArenaDialog(false);
+        setIsMarketDialog(false);
+    };
+
+    const handleClickMenu = (dialog) => {
+        closeAllDialogs();
+        if (distance > 50) {
+            toast.warning('O personagem precisa estar perto da estrutura para interagir.', {
+                position: 'top-right',
+                autoClose: 600,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+                transition: Flip,
+            });
+            return false;
+        }
+        dialog(true);
+    };
+
+    const handleTravel = async () => {
+        try {
+            const response = await Axios.post('http://localhost:3001/api/job/startWork', {
+                duration: 0,
+                jobId: 1,
+                jobStatus: 0,
+                coordsx: structure.coordsx,
+                coordsy: structure.coordsy,
+            });
+
+            if (response.data.status != 200) {
+                toast.warning(`${response.data.msg}`, {
+                    position: 'top-right',
+                    autoClose: 600,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                    transition: Flip,
+                });
+                return null;
+            }
+            toast.success(`Viajando adicionado à fila`, {
+                position: 'top-right',
+                autoClose: 600,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+                transition: Flip,
+            });
+        } catch (err) {
+            toast.error(`Falha ao adicionar Viajando à fila`, {
+                position: 'top-right',
+                autoClose: 600,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+                transition: Flip,
+            });
+        }
     };
 
     useEffect(() => {
@@ -57,9 +131,9 @@ const City = () => {
                     <CityShortcuts
                         character={character}
                         setCharacter={setCharacter}
-                        closeAllDialogs={closeAllDialogs}
-                        setIsAlleyDialog={setIsAlleyDialog}
-                        setIsArenaDialog={setIsArenaDialog}
+                        handleClickMenu={handleClickMenu}
+                        dialogs={{ setIsAlleyDialog, setIsArenaDialog, setIsMarketDialog }}
+                        handleTravel={handleTravel}
                     />
                 </div>
             </div>
@@ -75,10 +149,18 @@ const City = () => {
                         openBattleRolls={openBattleRolls}
                     />
                 </div>
+                <div className={`row dialog ${isMarketDialog ? 'is-open' : ''}`}>
+                    <MarketDialog
+                        cityId={cityId}
+                        character={character}
+                        setCharacter={setCharacter}
+                    />
+                </div>
             </div>
             <div className='col-1'>
                 <p>lateral</p>
             </div>
+            <ToastContainer />
         </div>
     );
 };

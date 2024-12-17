@@ -1,3 +1,15 @@
+@keyframes fadeInBackground {
+    from {
+        background-color: transparent;
+        opacity: 0;
+    }
+
+    to {
+        background-color: #3498db;
+        opacity: 1;
+    }
+}
+
 .dialog {
     margin-top: 20px;
     height: 820px;
@@ -9,7 +21,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: 100dvh;
-    transition: all 0.6s ease;
+    animation: fadeInBackground 1s ease-in-out;
 }
 
 .dungeon-icon {

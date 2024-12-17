@@ -24,7 +24,7 @@
 .shortcut-item-modern {
     width: 50px;
     height: 50px;
-    background: linear-gradient(180deg, #745b40, rgb(66, 54, 37)) padding-box, linear-gradient(180deg, #ffe695, rgb(146, 95, 0)) border-box;
+    background: linear-gradient(180deg, #777777, rgb(54, 54, 54)) padding-box, linear-gradient(180deg, #ffffff, rgb(124, 124, 124)) border-box;
     border: 4px solid transparent;
     border-radius: 50%;
     display: flex;

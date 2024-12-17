@@ -6,7 +6,7 @@ const ItemBox = ({ item, inventoryId, equipItem, equiped }) => {
     const { openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
 
     const itemGradientStyle = {
-        '--item-gradient': `radial-gradient(circle, ${item.tier.background} 5%, rgba(66, 66, 66, 0.01) 70%)`
+        '--item-gradient': `radial-gradient(circle, ${item.tier.background} 20%, rgba(66, 66, 66, 0.01) 85%)`
     };
     equiped = equiped === 1 ? equiped : 0;
 

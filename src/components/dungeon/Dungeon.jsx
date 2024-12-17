@@ -35,6 +35,75 @@ const Dungeon = () => {
         setIsArenaDialog(false);
     };
 
+    const handleClickMenu = (dialog) => {
+        closeAllDialogs();
+        if (distance > 50) {
+            toast.warning('O personagem precisa estar perto da estrutura para interagir.', {
+                position: 'top-right',
+                autoClose: 600,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+                transition: Flip,
+            });
+            return false;
+        }
+        dialog(true);
+    };
+
+    const handleTravel = async () => {
+        try {
+            const response = await Axios.post('http://localhost:3001/api/job/startWork', {
+                duration: 0,
+                jobId: 1,
+                jobStatus: 0,
+                coordsx: structure.coordsx,
+                coordsy: structure.coordsy,
+            });
+
+            if (response.data.status != 200) {
+                toast.warning(`${response.data.msg}`, {
+                    position: 'top-right',
+                    autoClose: 600,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                    transition: Flip,
+                });
+                return null;
+            }
+            toast.success(`Viajando adicionado à fila`, {
+                position: 'top-right',
+                autoClose: 600,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+                transition: Flip,
+            });
+        } catch (err) {
+            toast.error(`Falha ao adicionar Viajando à fila`, {
+                position: 'top-right',
+                autoClose: 600,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+                transition: Flip,
+            });
+        }
+    };
+
     useEffect(() => {
         getStructure();
     }, []);
@@ -55,9 +124,9 @@ const Dungeon = () => {
                     <DungeonShortcuts
                         character={character}
                         setCharacter={setCharacter}
-                        closeAllDialogs={closeAllDialogs}
-                        setIsAlleyDialog={setIsAlleyDialog}
-                        setIsArenaDialog={setIsArenaDialog}
+                        handleClickMenu={handleClickMenu}
+                        dialogs={{ setIsAlleyDialog, setIsArenaDialog }}
+                        handleTravel={handleTravel}
                     />
                 </div>
             </div>

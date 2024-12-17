@@ -5,8 +5,7 @@ import JobsInfoDialog from './JobsInfoDialog';
 const JobsWidget = ({ jobLocation }) => {
 
     const job = jobLocation.job;
-    const coordsx = jobLocation.coordsx;
-    const coordsy = jobLocation.coordsy;
+    const coords = { x: jobLocation.coordsx, y: jobLocation.coordsy }
 
     const [isJobDialogOpen, setIsJobDialogOpen] = useState(false);
 
@@ -21,8 +20,8 @@ const JobsWidget = ({ jobLocation }) => {
                 style={{
                     ...widgetBackground,
                     position: 'absolute',
-                    left: `${coordsx}px`,
-                    top: `${coordsy}px`,
+                    left: `${coords.x}px`,
+                    top: `${coords.y}px`,
                 }}
                 onClick={openJobDialog}
             >
@@ -32,7 +31,7 @@ const JobsWidget = ({ jobLocation }) => {
             </span>
 
             <div className={`dialog ${isJobDialogOpen ? 'is-open' : ''}`}>
-                <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} />
+                <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} coords={coords} />
             </div>
 
         </div>

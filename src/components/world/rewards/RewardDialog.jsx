@@ -22,11 +22,12 @@ const RewardDialog = ({ claimedRewards, isOpen, onClose }) => {
                 <div className='row'>
                     <div className='col-12 text-center job-result'>
                         <div className='ribbon'>Relatório de Trabalho Concluído</div>
+                        <p>{message}</p>
                         <p>Resultado do D20: {d20} <img className='d20' src='../world/d20w.svg' /></p>
-                        <p>D20 Após Cálculos: {calcd20} <img className='d20' src='../world/d20w.svg' /></p>
                         <p>Soma Total das Suas Habilidades: {totalSkillLevel}</p>
                         <p>Penalidade de Habilidades do Trabalho: {skillPenalty}</p>
                         <p>Nível de Dificuldade do Trabalho: {difficulty} <img className='d20' src='../world/d20w.svg' /></p>
+                        <p>D20 Após Cálculos: {calcd20} <img className='d20' src='../world/d20w.svg' /></p>
                         <p>Experiência Ganha: {experience} pontos</p>
                         <p>Moedas de Ouro: {gold}</p>
                     </div>

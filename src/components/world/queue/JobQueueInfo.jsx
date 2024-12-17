@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import Axios from 'axios';
 import { ToastContainer, toast, Flip } from 'react-toastify';
+import { useItemInfo } from '../../../context/ItemInfoContext';
 
-const JobQueueInfo = ({ queue, listQueue, setListQueue, openRewardsDialog, setCharacter }) => {
+const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, setListJob, setActiveQueue }) => {
 
+    const { openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
     const job = queue.job;
 
     const handleClickGetRewwards = async (queueId) => {
@@ -28,6 +30,8 @@ const JobQueueInfo = ({ queue, listQueue, setListQueue, openRewardsDialog, setCh
 
                 openRewardsDialog(jobResult);
                 setCharacter(character);
+                setListJob(null);
+                setActiveQueue(null);
 
                 toast.success('Trabalho concluído, recompensas adicionadas ao seu inventário.', {
                     position: 'top-right',
@@ -78,6 +82,9 @@ const JobQueueInfo = ({ queue, listQueue, setListQueue, openRewardsDialog, setCh
                     );
                 }
 
+                setListJob(null);
+                setActiveQueue(null);
+
                 toast.info('Trabalho removido da fila.', {
                     position: 'bottom-center',
                     autoClose: 600,
@@ -120,14 +127,39 @@ const JobQueueInfo = ({ queue, listQueue, setListQueue, openRewardsDialog, setCh
                     <span>Termina em: {dayjs(queue.endAt).format('DD/MM/YYYY HH:mm:ss')}</span>
                 </div>
                 <div className='row'>
-                    {queue.jobId !== 1 ? (
+                    {queue.relatedJobId === null ? (
                         <div className='col-12 d-flex justify-content-center'>
                             <div className='btn-group'>
-                                <button type='button' className='btn btn-success' disabled={!(queue.jobStatus == 2)} onClick={() => handleClickGetRewwards(queue.id)}>Recompensas</button>
-                                <button type='button' className='btn btn-danger' disabled={(queue.jobStatus == 2)} onClick={() => handleClickDismissJob(queue.id)}>Encerrar</button>
+                                <button type='button' className='btn btn-success' disabled={!(queue.jobStatus === 2) || queue.jobId === 1} onClick={() => handleClickGetRewwards(queue.id)}>Recompensas</button>
+                                <button type='button' className='btn btn-danger' disabled={(queue.jobStatus === 2)} onClick={() => handleClickDismissJob(queue.id)}>Encerrar</button>
                             </div>
                         </div>
                     ) : null}
+                </div>
+                <hr />
+                <div className='row'>
+                    {Array.isArray(job.rewards) && job.rewards.map((rewardItem) => {
+                        const item = rewardItem.item;
+                        const itemGradientStyle = {
+                            '--item-gradient': `radial-gradient(circle, gray 5%, rgba(66, 66, 66, 0.01) 70%)`
+                        };
+                        return (
+                            <div
+                                key={rewardItem.id}
+                                className='col-1 reward-box'
+                                style={{ cursor: 'pointer', borderColor: 'gray' }}
+                                onMouseEnter={openItemInfoDialog ? () => openItemInfoDialog(item, null) : null}
+                                onMouseLeave={closeItemInfoDialog ? () => closeItemInfoDialog() : null}
+                            >
+                                <img
+                                    className='img-fluid'
+                                    src={`../${item.image}t0.png`}
+                                    alt='Reward Item image'
+                                    style={itemGradientStyle}
+                                />
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>

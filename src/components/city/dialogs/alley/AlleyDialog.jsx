@@ -68,10 +68,10 @@ const AlleyDialog = ({ cityId, openBattleRolls }) => {
                     {Array.isArray(listNPCs) && listNPCs.map((option) => {
                         const npc = option.npc;
                         const weapon = npc.inventory.find(
-                            (inventory) => inventory.item.categoryId == 7
+                            (inventory) => inventory?.item.categoryId == 7
                         )?.item;
                         const skillModifier = npc.skills.find(
-                            (skills) => skills.skill.id == weapon.skillId
+                            (skills) => skills?.skill.id == weapon?.skillId
                         );
                         return (
                             <div key={option.id} className='row row-cols-3 align-items-center option' onClick={() => challengeNPC(npc)}>

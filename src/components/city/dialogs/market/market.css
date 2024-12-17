@@ -1,0 +1,34 @@
+.market-dialog {
+    .merchant img {
+        box-shadow: 1px 1px 5px #000000;
+        border-radius: 100%;
+        border: 2px outset #0000002f;
+    }
+
+    .market-box {
+        margin-top: 10px;
+        padding: 20px;
+    }
+
+    .item-box {
+        box-shadow: 1px 1px 5px #000000;
+        border-radius: 5px;
+        border: 2px outset #303030b6;
+        background-color: #424242ee;
+        margin: 0;
+        padding-right: 5px;
+    }
+
+    .item-box .img-fluid {
+        transition: all 0.3s ease;
+        background: var(--item-gradient);
+        background-color: rgba(0, 0, 0, 0.801);
+        border: 2px dashed var(--border-color);
+        border-radius: 10px 10px 10px 10px;
+        padding: 0;
+    }
+
+    .item-box:hover .img-fluid {
+        transform: translateY(-2px) scale(1.05);
+    }
+}

@@ -35,4 +35,5 @@
     background-color: rgba(0, 0, 0, 0.800);
     border-radius: 0 0 20px 20px;
     border: 2px outset #000000f1;
+    width: 100%;
 }

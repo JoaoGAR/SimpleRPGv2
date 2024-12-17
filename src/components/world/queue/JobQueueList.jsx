@@ -8,7 +8,7 @@ const JobQueueList = ({ queue, setListJob, isActive, setActiveQueue }) => {
 
     return (
         <div
-            className={`row row-cols-2 align-items-center job-list-item ${isActive ? 'active' : ''}`}
+            className={`row row-cols-2 align-items-center job-list-item ${isActive ? 'active' : ''} ${queue.jobStatus === 2 ? 'done' : ''}`}
             onMouseEnter={() => {
                 setActiveQueue();
                 setListJob();

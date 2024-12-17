@@ -4,13 +4,14 @@ import Axios from 'axios';
 import { ToastContainer, toast, Flip } from 'react-toastify';
 import { useItemInfo } from '../../../context/ItemInfoContext';
 
-const JobsInfoDialog = ({ job, isOpen, onClose }) => {
+const JobsInfoDialog = ({ job, coords, isOpen, onClose }) => {
 
     if (!isOpen) return null;
 
     const { openItemInfoDialog, closeItemInfoDialog } = useItemInfo();
     const requirements = job.requirements;
-    const difficulty = requirements.reduce((total, requirement) => total + requirement.skillLevel, 0);
+    const difficulty = job.difficulty;
+    const jobPenalty = requirements.reduce((total, requirement) => total + requirement.skillLevel, 0);
     let jobColor = { '--jobColor': `${job.attribute.color}` };
 
     const handleClickButton = async (duration) => {
@@ -19,8 +20,8 @@ const JobsInfoDialog = ({ job, isOpen, onClose }) => {
                 duration: duration,
                 jobId: job.id,
                 jobStatus: 0,
-                coordsx: job.coordsx,
-                coordsy: job.coordsy,
+                coordsx: coords.x,
+                coordsy: coords.y,
             });
 
             if (response.data.status != 200) {
@@ -100,7 +101,7 @@ const JobsInfoDialog = ({ job, isOpen, onClose }) => {
                     </div>
                     <hr />
                     <div className='row job-info-rewards mt-2'>
-                        {typeof job.rewards !== 'undefined' && job.rewards.map((rewardItem) => {
+                        {Array.isArray(job.rewards) && job.rewards.map((rewardItem) => {
                             const item = rewardItem.item;
                             const itemGradientStyle = {
                                 '--item-gradient': `radial-gradient(circle, gray 5%, rgba(66, 66, 66, 0.01) 70%)`
@@ -115,7 +116,7 @@ const JobsInfoDialog = ({ job, isOpen, onClose }) => {
                                 >
                                     <img
                                         className='img-fluid'
-                                        src={`../${item.image}`}
+                                        src={`../${item.image}t0.png`}
                                         alt='Reward Item image'
                                         style={itemGradientStyle}
                                     />

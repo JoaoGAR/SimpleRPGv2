@@ -62,6 +62,8 @@ const QueueDialog = ({ isOpen, onClose, setCharacter }) => {
                             setListQueue={setListQueue}
                             openRewardsDialog={openRewardsDialog}
                             setCharacter={setCharacter}
+                            setListJob={setListJob}
+                            setActiveQueue={setActiveQueue}
                         />}
                     </div>
                 </div>
