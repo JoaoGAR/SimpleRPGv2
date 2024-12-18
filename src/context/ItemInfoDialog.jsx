@@ -1,3 +1,4 @@
+import './itemInfoDialog.css';
 import React, { useState } from 'react';
 
 const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, diffy }) => {

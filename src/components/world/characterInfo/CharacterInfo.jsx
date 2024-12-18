@@ -8,8 +8,8 @@ const CharacterInfo = ({ character, openCharacterSheetDialog }) => {
     const wellnessPercentage = (wellness / 100) * 100;
     const classColor1 = character.class.color1;
     const classColor2 = character.class.color2;
-    let requiredXP = Math.floor(15 * Math.pow((character.level + 1), 2));
-    let actualLevelXP = Math.floor(15 * Math.pow((character.level), 2));
+    let requiredXP = Math.floor(10 * Math.pow((character.level + 1), 2));
+    let actualLevelXP = Math.floor(10 * Math.pow((character.level), 2));
     let levelXP = requiredXP - actualLevelXP;
     let currentXP = character.experience - actualLevelXP;
     let requiredXPPercentage = (currentXP / levelXP) * 100;

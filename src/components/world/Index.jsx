@@ -39,7 +39,7 @@ const Index = () => {
             setListStructures(response.data);
         });
         setCharacter(auth.user.character);
-    }, [character]);
+    }, []);
 
     return (
         <div className='game-container' onMouseMove={handleMouseMove}>

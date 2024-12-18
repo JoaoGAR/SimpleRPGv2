@@ -1,0 +1,31 @@
+.item-info {
+    background-color: rgba(12, 12, 12, 0.9);
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+    color: white;
+}
+
+.item-skills .skill-img {
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.item-skills .skill-level {
+    width: 50%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.700);
+}
+
+.item-skills .ability-img {
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-radius: 100%;
+    margin-top: 5px;
+}

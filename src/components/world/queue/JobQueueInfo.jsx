@@ -126,16 +126,6 @@ const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, se
                 <div className='col-12 status'>
                     <span>Termina em: {dayjs(queue.endAt).format('DD/MM/YYYY HH:mm:ss')}</span>
                 </div>
-                <div className='row'>
-                    {queue.relatedJobId === null ? (
-                        <div className='col-12 d-flex justify-content-center'>
-                            <div className='btn-group'>
-                                <button type='button' className='btn btn-success' disabled={!(queue.jobStatus === 2) || queue.jobId === 1} onClick={() => handleClickGetRewwards(queue.id)}>Recompensas</button>
-                                <button type='button' className='btn btn-danger' disabled={(queue.jobStatus === 2)} onClick={() => handleClickDismissJob(queue.id)}>Encerrar</button>
-                            </div>
-                        </div>
-                    ) : null}
-                </div>
                 <hr />
                 <div className='row'>
                     {Array.isArray(job.rewards) && job.rewards.map((rewardItem) => {
@@ -160,6 +150,17 @@ const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, se
                             </div>
                         )
                     })}
+                </div>
+                <hr />
+                <div className='row'>
+                    {queue.relatedJobId === null ? (
+                        <div className='col-12 d-flex justify-content-center'>
+                            <div className='btn-group'>
+                                <button type='button' className='btn btn-lg btn-success' disabled={!(queue.jobStatus === 2) || queue.jobId === 1} onClick={() => handleClickGetRewwards(queue.id)}>Recompensas</button>
+                                <button type='button' className='btn btn-lg btn-danger' disabled={(queue.jobStatus === 2)} onClick={() => handleClickDismissJob(queue.id)}>Encerrar</button>
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
             </div>
         </div>
