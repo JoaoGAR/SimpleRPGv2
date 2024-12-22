@@ -2,14 +2,14 @@ import "./dungeonShortcuts.css";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const DungeonShortcuts = ({ character, setCharacter, dialogs, handleTravel }) => {
+const DungeonShortcuts = ({ character, setCharacter, handleClickMenu, dialogs, handleTravel }) => {
 
     const navigate = useNavigate();
     const backToWorld = () => { navigate('/world'); };
 
     return (
         <div key="row dungeon-shortcuts">
-            <div className="col-10 dungeon-shortcut" onClick={() => { handleClickMenu(dialogs.setIsArenaDialog) }}>
+            <div className="col-10 dungeon-shortcut" onClick={() => { handleClickMenu(dialogs.setIsTower) }}>
                 <h5>Explorar torre <img src="../../world/icons/ancientTower.png" alt="Skill book icon" style={{ width: '50px' }} /></h5>
             </div>
             <div className="col-10 dungeon-shortcut" onClick={() => { handleClickMenu(dialogs.setIsArenaDialog) }}>

@@ -136,7 +136,7 @@ const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, se
                         return (
                             <div
                                 key={rewardItem.id}
-                                className='col-1 reward-box'
+                                className='col-1 queue-reward-box'
                                 style={{ cursor: 'pointer', borderColor: 'gray' }}
                                 onMouseEnter={openItemInfoDialog ? () => openItemInfoDialog(item, null) : null}
                                 onMouseLeave={closeItemInfoDialog ? () => closeItemInfoDialog() : null}

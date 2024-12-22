@@ -6,10 +6,12 @@ const BattleRollsContext = createContext();
 export const BattleRollsProvider = ({ children }) => {
     const [rolls, setRolls] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const [character, setCharacter] = useState(null);
 
-    const openBattleRolls = (newRolls) => {
+    const openBattleRolls = (newRolls, character) => {
         setRolls(newRolls);
         setIsOpen(true);
+        setCharacter(character);
     };
 
     const closeBattleRolls = () => {
@@ -20,7 +22,7 @@ export const BattleRollsProvider = ({ children }) => {
     return (
         <BattleRollsContext.Provider value={{ openBattleRolls, closeBattleRolls }}>
             {children}
-            {isOpen && <BattleRolls rolls={rolls} openRolls={isOpen} />}
+            {isOpen && <BattleRolls rolls={rolls} openRolls={isOpen} character={character} />}
         </BattleRollsContext.Provider>
     );
 };

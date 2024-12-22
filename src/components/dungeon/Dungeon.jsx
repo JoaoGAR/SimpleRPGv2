@@ -1,20 +1,30 @@
 import './dungeon.css';
 import React, { useContext, useState, useEffect } from 'react';
+import { ToastContainer, toast, Flip } from 'react-toastify';
 import { AuthContext } from '../../context/AuthContext';
 import { useBattleRolls } from '../../context/BattleContext';
+import { useItemInfo } from '/src/context/ItemInfoContext';
 import { useParams } from 'react-router-dom';
 import Axios from 'axios';
 
-import DungeonShortcuts from './DungeonShortcuts';
+import Shortcutsbar from '../shortcutsBar/Shortcutsbar';
+
+import SwampShortcuts from './shortcuts/SwampShortcuts';
+import ForestShortcuts from './shortcuts/ForestShortcuts';
+
+import ForestDialog from './dialogs/forest/ForestDialog';
+import BeastsDialog from './dialogs/beasts/BeastsDialog';
 
 const Dungeon = () => {
 
     const { auth } = useContext(AuthContext);
     const { openBattleRolls } = useBattleRolls();
+    const { handleMouseMove } = useItemInfo();
 
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
     const [character, setCharacter] = useState(auth.user.character);
+    const distance = Math.sqrt((structure.coordsx - character.coordsx) ** 2 + (structure.coordsy - character.coordsy) ** 2);
 
     async function getStructure() {
         const structureId = cityId;
@@ -30,9 +40,14 @@ const Dungeon = () => {
     const [isAlleyDialog, setIsAlleyDialog] = useState(false);
     const [isArenaDialog, setIsArenaDialog] = useState(false);
 
+    const [isForestDialog, setIsForestDialog] = useState(false);
+    const [IsBeastsDialog, setIsBeastsDialog] = useState(false);
+
     const closeAllDialogs = () => {
         setIsAlleyDialog(false);
         setIsArenaDialog(false);
+        setIsForestDialog(false);
+        setIsBeastsDialog(false);
     };
 
     const handleClickMenu = (dialog) => {
@@ -109,11 +124,11 @@ const Dungeon = () => {
     }, []);
 
     return (
-        <div className='row row-cols-2 dungeon-background' style={{ backgroundImage: `url(../../${structure.image})` }}>
+        <div className='row row-cols-3 dungeon-background' style={{ backgroundImage: `url(../../${structure.image})` }} onMouseMove={handleMouseMove}>
             <div className='col-3'>
                 <div className='row text-uppercase'>
                     <ul className='text-center mt-2'>
-                        <li style={{ '--accent-color': '#5c0623' }}>
+                        <li style={{ '--accent-color': structure.color }}>
                             <div className='icon'><img className='dungeon-icon' src={`../../${structure.icon}`} alt='Structure heraldry' /></div>
                             <div className='title'>{structure.name}</div>
                         </li>
@@ -121,15 +136,50 @@ const Dungeon = () => {
                 </div>
 
                 <div style={{ marginTop: '20px' }}>
-                    <DungeonShortcuts
+                    {(structure.type === 2) && (
+                        <SwampShortcuts
+                            character={character}
+                            setCharacter={setCharacter}
+                            handleClickMenu={handleClickMenu}
+                            dialogs={{ setIsAlleyDialog, setIsArenaDialog }}
+                            handleTravel={handleTravel}
+                        />
+                    )}
+
+                    {(structure.type === 3) && (
+                        <ForestShortcuts
+                            character={character}
+                            setCharacter={setCharacter}
+                            handleClickMenu={handleClickMenu}
+                            dialogs={{ setIsForestDialog, setIsBeastsDialog }}
+                            handleTravel={handleTravel}
+                        />
+                    )}
+                </div>
+            </div>
+
+            <div className="col-7" style={{ position: 'relative' }}>
+                <div className={`row dialog ${isForestDialog ? 'is-open' : ''}`}>
+                    <ForestDialog
+                        cityId={cityId}
+                    />
+                </div>
+                <div className={`row dialog ${IsBeastsDialog ? 'is-open' : ''}`}>
+                    <BeastsDialog
+                        cityId={cityId}
+                        openBattleRolls={openBattleRolls}
                         character={character}
-                        setCharacter={setCharacter}
-                        handleClickMenu={handleClickMenu}
-                        dialogs={{ setIsAlleyDialog, setIsArenaDialog }}
-                        handleTravel={handleTravel}
                     />
                 </div>
             </div>
+            <div className='col-2'>
+            </div>
+
+            <Shortcutsbar
+                character={character}
+                setCharacter={setCharacter}
+            />
+            <ToastContainer />
         </div>
     );
 };

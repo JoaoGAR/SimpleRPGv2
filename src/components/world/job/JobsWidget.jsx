@@ -30,7 +30,12 @@ const JobsWidget = ({ jobLocation }) => {
                 </div>
             </span>
 
-            <div className={`dialog ${isJobDialogOpen ? 'is-open' : ''}`}>
+            <div className={`row job-info-dialog ${isJobDialogOpen ? 'is-open' : ''}`}
+                style={{
+                    position: 'absolute',
+                    left: `${coords.x}px`,
+                    top: `${coords.y}px`,
+                }}>
                 <JobsInfoDialog isOpen={isJobDialogOpen} onClose={closeJobDialog} job={job} coords={coords} />
             </div>
 

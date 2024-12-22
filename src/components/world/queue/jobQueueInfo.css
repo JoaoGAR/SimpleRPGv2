@@ -4,38 +4,40 @@
     place-self: initial;
 }
 
-.job-queue-info .description {
-    margin-top: 60px;
-}
+.job-queue-info {
+    .description {
+        margin-top: 60px;
+    }
 
-.job-queue-info .reward-box {
-    background-color: rgba(0, 0, 0, 0.801);
-    border: 2px inset #303030c5;
-    border-radius: 10px 10px 10px 10px;
-}
+    .queue-reward-box {
+        background-color: rgba(0, 0, 0, 0.801);
+        border: 2px inset #303030c5;
+        border-radius: 10px 10px 10px 10px;
+    }
 
-.job-queue-info .ribbon {
-    font-size: 25px;
-    font-weight: bold;
-    color: #fff;
-}
+    .ribbon {
+        font-size: 25px;
+        font-weight: bold;
+        color: #fff;
+    }
 
-.job-queue-info .ribbon {
-    --f: .6em;
-    /* control the folded part*/
-    --r: .9em;
-    /* control the ribbon shape */
+    .ribbon {
+        --f: .6em;
+        /* control the folded part*/
+        --r: .9em;
+        /* control the ribbon shape */
 
-    position: absolute;
-    top: 20px;
-    left: calc(-1*var(--f));
-    padding-inline: 3em;
-    line-height: 1.5;
-    background: #ca1a38;
-    border-bottom: var(--f) solid #0005;
-    border-right: var(--r) solid #0000;
-    clip-path:
-        polygon(calc(100% - var(--r)) 0, 0 0, 0 calc(100% - var(--f)), var(--f) 100%,
-            var(--f) calc(100% - var(--f)), calc(100% - var(--r)) calc(100% - var(--f)),
-            100% calc(50% - var(--f)/2));
+        position: absolute;
+        top: 20px;
+        left: calc(-1*var(--f));
+        padding-inline: 3em;
+        line-height: 1.5;
+        background: #ca1a38;
+        border-bottom: var(--f) solid #0005;
+        border-right: var(--r) solid #0000;
+        clip-path:
+            polygon(calc(100% - var(--r)) 0, 0 0, 0 calc(100% - var(--f)), var(--f) 100%,
+                var(--f) calc(100% - var(--f)), calc(100% - var(--r)) calc(100% - var(--f)),
+                100% calc(50% - var(--f)/2));
+    }
 }

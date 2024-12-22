@@ -2,42 +2,28 @@ import './battleRolls.css';
 import React, { useEffect, useState } from 'react';
 
 import { useBattleRolls } from '../../../context/BattleContext';
+import BattleReward from './rewards/BattleReward';
 
-const BattleRolls = ({ rolls, openRolls }) => {
+const BattleRolls = ({ rolls, openRolls, character }) => {
 
     const { closeBattleRolls } = useBattleRolls();
 
     const [winner, setWinner] = useState(null);
+    const [experience, setExperience] = useState(0);
+    const [gold, setGold] = useState(0);
     const [battleStatus, setBattleStatus] = useState([]);
+    const [rewards, setRewards] = useState([]);
     const [text, setText] = useState([]);
 
     useEffect(() => {
         if (rolls) {
             setWinner(rolls.winner);
             setBattleStatus(rolls.battleStatus || []);
+            setRewards(rolls.createdItems || []);
+            setExperience(rolls.experience || 0);
+            setGold(rolls.gold || 0);
         }
     }, [rolls]);
-
-    useEffect(() => {
-        let index = 0;
-        const interval = setInterval(() => {
-            if (index < battleStatus.length) {
-                const round = battleStatus[index];
-                const statusMessage = round.status === 1 ? 'foi certeiro' : 'errou';
-                setText((prev) => [
-                    ...prev,
-                    `ROUND ${round.roundN}| ${round.attacker.name} atacou ${round.target.name}(${round.target.armorClass}[AC]) com ${round.ability.name}(${round.ability.attack}) e ${statusMessage}.
-                    Rolou ${round.d20 + round.skillModifier}(${round.d20}[d20] + ${round.skillModifier}[SM]). 
-                    Dano causado: ${round.damage}(${round.weaponDamage}[WD] + ${round.abilityDamage}[AD] + ${round.skillModifier}[SM] * ${round.critical}[Critical]). 
-                    (${round.target.name}): ${round.target.wellness}.`,
-                ]);
-                index++;
-            } else {
-                clearInterval(interval);
-            }
-        }, 500);
-        return () => clearInterval(interval);
-    }, [battleStatus]);
 
     const handleClose = () => {
         setText([]);
@@ -55,14 +41,47 @@ const BattleRolls = ({ rolls, openRolls }) => {
                 <div className='row align-items-center justify-content-center'>
                     <div className='ribbon text-uppercase'>{winner === 1 ? '--Vitória--' : '--Derrota--'}</div>
                 </div>
-                <div className='row rewards'>
+                <div className='row justify-content-center text-center text-uppercase mt-4'>
+                    <h6>Recebeu: {experience} pontos de EXP.</h6>
+                    <h6>Recebeu: {gold} moedas de ouro.</h6>
+                </div>
 
+                <div className='row battle-historic' style={{ backgroundColor: 'white' }}>
+                    {battleStatus.map((roundHistoric, index) => {
+                        const textColor = roundHistoric.status ? 'text-success' : 'text-warning';
+                        const status = roundHistoric.status ? 'ACERTOU' : 'ERROU';
+
+                        const d20 = roundHistoric.d20;
+                        const skillModifier = roundHistoric.skillModifier;
+                        const damage = roundHistoric.damage;
+                        const weaponDamage = roundHistoric.weaponDamage;
+                        const abilityDamage = roundHistoric.abilityDamage;
+                        const critical = roundHistoric.critical;
+
+                        const attacker = roundHistoric.attacker;
+                        const target = roundHistoric.target;
+                        const ability = roundHistoric.ability;
+                        const player = attacker.name == character.name ? 'text-primary' : 'text-danger';
+                        const enemy = target.name == character.name ? 'text-primary' : 'text-danger';
+                        return (
+                            <div key={index} className='col-12'>
+                                <h5 className='text-dark'>ROUND {roundHistoric.roundN}</h5>
+                                <span className={`${textColor}`}>
+                                    {critical > 1 ? <h2 className='text-info'>ACERTO CRÍTICO!</h2> : ''}
+                                    <span className={`${player}`}>{attacker.name}</span> atacou <span className={`${enemy}`}>{target.name}({target.armorClass}[AC])</span> com {ability.name}({ability.attack}) e {status} o ataque.
+                                    <br />
+                                    Rolou rolou {d20 + skillModifier}({d20} + {skillModifier}[SM]) no teste de acerto. Causando {damage}({weaponDamage}[WD] + {abilityDamage}[AD] + {skillModifier}[SM]) de dano a <span className={`${enemy}`}>{target.name}({target.wellness})({target.armorClass}[AC])</span>!
+                                </span>
+                                <hr />
+                            </div>
+                        );
+                    })}
                 </div>
-                <div className='row battle-history'>
-                    {text.map((line, index) => (
-                        <p key={index}>{line}</p>
-                    ))}
-                </div>
+            </div>
+            <div className='row row-cols-6 justify-content-center rewards'>
+                {Array.isArray(rewards) && rewards.map((reward, index) => (
+                    <BattleReward key={index} reward={reward} />
+                ))}
             </div>
         </div>
     );

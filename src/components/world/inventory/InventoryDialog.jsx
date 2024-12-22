@@ -24,7 +24,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
         Axios.get('http://localhost:3001/api/inventory/get').then((response) => {
             const inventory = response.data;
             setListInventory(inventory);
-            setEquipedItems();
+            setEquippedItems();
         });
     }, [character, equipment]);
 
@@ -34,7 +34,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
         setEquipmentBonus(mergedSkills);
     }, [character])
 
-    const setEquipedItems = () => {
+    const setEquippedItems = () => {
         const updatedEquipment = {
             mainHand: [],
             offHand: [],
@@ -84,15 +84,15 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
 
     if (!isOpen) return null;
 
-    const equipItem = async (inventoryId, equiped) => {
+    const equipItem = async (inventoryId, equipped) => {
         const response = await Axios.post('http://localhost:3001/api/inventory/equip/item', {
             inventoryId,
-            equiped,
+            equipped,
         });
         const { status, msg, prevEquipment, inventory, character } = response.data;
         if (status === 200) {
             setCharacter(character);
-            setEquipedItems();
+            setEquippedItems();
         }
     };
 
@@ -104,7 +104,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                         <i className='bi bi-backpack2'></i>
                     </div>
                     <div className='col-8 inventory-title text-center'>
-                        <h6 className='text-uppercase fw-bold'>inventário {listInventory.length}/{inventorySize}</h6>
+                        <h6 className='text-uppercase fw-bold'>inventory</h6>
                     </div>
                     <div className='col-2 d-flex justify-content-end align-items-end'>
                         <button className='btn btn-sm btn-danger' onClick={onClose}><i className='bi bi-x'></i></button>
@@ -117,9 +117,9 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                                 <div className='row row-cols-1 justify-content-center'>
                                     {[
                                         { item: headEquipment, col: '12' },
+                                        { item: handsEquipment, col: '12' },
                                         { item: bodyEquipment, col: '12' },
                                         { item: legsEquipment, col: '12' },
-                                        { item: handsEquipment, col: '12' },
                                         { item: feetEquipment, col: '12' },
                                     ].map(({ item, col }, index) => (
                                         <EquipmentSlot
@@ -146,8 +146,8 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                                     <div className='col-12'>
                                         <div className='row row-cols-3 justify-content-center'>
                                             {[
-                                                { item: mainHand, col: '4' },
                                                 { item: offHand, col: '4' },
+                                                { item: mainHand, col: '4' },
                                             ].map(({ item, col }, index) => (
                                                 <EquipmentSlot
                                                     key={index}
@@ -162,24 +162,45 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                                 </div>
                             </div>
                             <div className='col-2'>
-                                <div className='row character-skills'>
-                                    {Array.isArray(listEquipmentBonus) && listEquipmentBonus.map((skill) => {
-                                        return (
-                                            <div key={skill.id} className='col-6'>
-                                                <div className='skill-img' style={{ backgroundImage: `url('/${skill.icon}')` }}>
-                                                    <span className='skill-level fw-bolder'>{skill.level}</span>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
+                                <div className='row row-cols-1 justify-content-center'>
+                                    {[
+                                        { item: {}, col: '12' },
+                                        { item: {}, col: '12' },
+                                        { item: {}, col: '12' },
+                                        { item: {}, col: '12' },
+                                        { item: {}, col: '12' },
+                                    ].map(({ item, col }, index) => (
+                                        <EquipmentSlot
+                                            key={index}
+                                            item={item}
+                                            offset={null}
+                                            col={col}
+                                            margin={'mx-2 my-1'}
+                                        />
+                                    ))}
                                 </div>
                             </div>
+                        </div>
+                        <hr />
+                        <div className='row row-cols-6 justify-content-center character-skills'>
+                            {Array.isArray(listEquipmentBonus) && listEquipmentBonus.map((skill) => {
+                                return (
+                                    <div key={skill.id} className='col-1 m-1'>
+                                        <div className='skill-img' style={{ backgroundImage: `url('/${skill.icon}')` }}>
+                                            <span className='skill-level fw-bolder'>{skill.level}</span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                     </div>
                     <div className='col-6 inventory-items'>
                         <div className='row row-cols-2 d-flex justify-content-end' style={{ backgroundColor: 'black' }}>
+                            <div className='col-4'>
+                                <p>{listInventory.length}/{inventorySize}</p>
+                            </div>
                             <div className='col-2'>
-                                <p style={{ color: 'yellow' }}><img className='img-fluid' style={{ height: '20px', width: '20px' }} src='/items/common/coin.png' alt='Golds coin' /> {character.gold}</p>
+                                <p style={{ color: 'yellow' }}><img className='img-fluid' style={{ height: '20px', width: '20px' }} src='/items/common/coin.png' alt='Gold coin' /> {character.gold}</p>
                             </div>
                         </div>
                         <div className='row row-cols-6 m-2'>
@@ -190,7 +211,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                                         item={inventoryItem.item}
                                         inventoryId={inventoryItem.id}
                                         equipItem={equipItem}
-                                        equiped={inventoryItem.equiped}
+                                        equipped={inventoryItem.equipped}
                                     />
                                 );
                             })}

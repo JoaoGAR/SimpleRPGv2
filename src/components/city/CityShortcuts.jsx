@@ -1,7 +1,6 @@
 import "./cityShortcuts.css";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Axios from 'axios';
 
 const CityShortcuts = ({ character, setCharacter, handleClickMenu, dialogs, handleTravel }) => {
 

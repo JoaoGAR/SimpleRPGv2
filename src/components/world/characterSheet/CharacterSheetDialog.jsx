@@ -1,6 +1,7 @@
 import './characterSheetDialog.css';
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { mergeSkills } from '../../../utils/skills';
 import EquipmentSlot from '../item/EquipmentSlot';
 
 const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
@@ -8,6 +9,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
     const [character, setCharacter] = useState(null);
 
     const [equipment, setEquipment] = useState([]);
+    const [listEquipmentBonus, setEquipmentBonus] = useState([]);
     const [mainHand, setMainHand] = useState([]);
     const [offHand, setOffHand] = useState([]);
     const [headEquipment, setHeadEquipment] = useState([]);
@@ -31,7 +33,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
     }, [characterId]);
 
     useEffect(() => {
-        setEquipedItems();
+        setequippedItems();
     }, [equipment]);
 
     const setCharacterSheet = (character) => {
@@ -45,7 +47,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
         setCharacterAttributes(character.attributes);
     }
 
-    const setEquipedItems = () => {
+    const setequippedItems = () => {
         const updatedEquipment = {
             mainHand: [],
             offHand: [],
@@ -105,6 +107,8 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
             setCharacter(character);
             setEquipment(character.inventory);
             setCharacterSheet(character);
+            const mergedSkills = mergeSkills(character);
+            setEquipmentBonus(mergedSkills);
         }
     }
 
@@ -176,14 +180,14 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                         <div className='row row-cols-2 mt-3'>
                             <div className='col d-flex justify-content-center'>
                                 <EquipmentSlot
-                                    item={mainHand}
+                                    item={offHand}
                                     offset={null}
                                     col={'8'}
                                 />
                             </div>
                             <div className='col d-flex justify-content-center'>
                                 <EquipmentSlot
-                                    item={offHand}
+                                    item={mainHand}
                                     offset={null}
                                     col={'8'}
                                 />
@@ -203,22 +207,34 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                             </div>
 
                             <div className='row row-cols-5 justify-content-center'>
-                                {Array.isArray(listCharacterSkills) && listCharacterSkills.map((characterSkill) => (
-                                    <div key={characterSkill.id} className='col skill-box' style={{ backgroundImage: `url(${characterSkill.skill.icon})` }}>
+                                {Array.isArray(listEquipmentBonus) && listEquipmentBonus.map((characterSkill) => (
+                                    <div key={characterSkill.id} className='col skill-box' style={{ backgroundImage: `url(${characterSkill.icon})` }}>
                                         <div className='row text-center'>
                                             <span>{characterSkill.level}</span>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                            <div className='row row-cols-4 mt-2 justify-content-center'>
-                                {Array.isArray(listWeaponAbilities) && listWeaponAbilities.map((weaponAbility) => (
-                                    <div key={weaponAbility.id} className='col weapon-ability-box' style={{ backgroundImage: `url(${weaponAbility.ability.icon})` }}>
-                                        <div className='row text-center'>
-                                            <span>{weaponAbility.attack}</span>
+                            <div className='row justify-content-center mt-2'>
+                                {Array.isArray(listWeaponAbilities) && listWeaponAbilities.map((weaponAbility) => {
+                                    const ability = weaponAbility.ability;
+                                    const skillModifier = listCharacterSkills.find(
+                                        (skills) => skills?.skill.id == offHand?.skillId
+                                    );
+                                    return (
+                                        <div key={weaponAbility.id} className='row justify-content-center align-items-center' style={{fontSize: '20px'}}>
+                                            <span className='col-3 text-center'>
+                                                <img style={{ height: '50px', filter: 'grayscale(1) invert(1)' }} src={`../../${offHand?.icon}`} />+{Math.floor(skillModifier?.level / 5)}
+                                            </span>
+                                            <span className='col-3 text-center'>
+                                            <img style={{ height: '40px' }} src={`../../${offHand?.image}`} />{offHand?.attack}
+                                            </span>
+                                            <span className='col-3 text-center'>
+                                                <img className='ability-icon' style={{ height: '40px' }} src={`../../${ability.icon}`} /> {ability.attack}
+                                            </span>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </div>
                     </div>

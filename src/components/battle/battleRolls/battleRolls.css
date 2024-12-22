@@ -4,52 +4,53 @@
     background-color: #00000080;
     margin-top: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1010;
 }
 
-.battle-rolls-dialog .container {
-    box-shadow: inset 1px 1px 5px #000000bd, 1px 5px 5px rgba(0, 0, 0, 0.500);
-    background: radial-gradient(circle, rgba(164, 83, 83, 1) 15%, rgba(93, 19, 19, 1) 68%);
-    border-radius: 20px 20px 20px 20px;
-    border: 5px outset rgb(253, 219, 67);
-    height: 95%;
-    margin-top: 0;
-    padding: 40px;
-}
+.battle-rolls-dialog {
+    .container {
+        box-shadow: inset 1px 1px 5px #000000bd, 1px 5px 5px rgba(0, 0, 0, 0.500);
+        background: radial-gradient(circle, rgb(46, 46, 46) 15%, rgb(26, 26, 26) 68%);
+        border-radius: 20px 20px 20px 20px;
+        border: 5px outset rgb(253, 219, 67);
+        margin-top: 0;
+        padding: 40px;
+    }
 
-.battle-rolls-dialog .battle-history {
-    margin-top: 50px;
-}
+    .battle-historic {
+        margin-top: 20px;
+        padding-inline: 20px;
+        font-weight: bold;
+        max-height: 200px;
+        overflow-y: auto;
+    }
 
 
+    /* HTML: <div class="ribbon">Your text content</div> */
+    .ribbon {
+        font-size: 28px;
+        font-weight: bold;
+        color: #fff;
+    }
 
-/* HTML: <div class="ribbon">Your text content</div> */
-.battle-rolls-dialog .ribbon {
-    font-size: 28px;
-    font-weight: bold;
-    color: #fff;
-}
+    .ribbon {
+        --s: 3em;
+        /* the ribbon size */
+        --d: .3em;
+        /* the depth */
+        --c: .9em;
+        /* the cutout part */
 
-.battle-rolls-dialog .ribbon {
-    --s: 3em;
-    /* the ribbon size */
-    --d: .3em;
-    /* the depth */
-    --c: .9em;
-    /* the cutout part */
-
-    padding: 0 calc(var(--s) + .5em) var(--d);
-    line-height: 2;
-    background:
-        conic-gradient(at left var(--s) bottom var(--d),
-            #0000 25%, #0008 0 37.5%, #0004 0) 0 /50% 100% no-repeat,
-        conic-gradient(at right var(--s) bottom var(--d),
-            #0004 62.5%, #0008 0 75%, #0000 0) 100%/50% 100% no-repeat;
-    clip-path: polygon(0 var(--d), var(--s) var(--d), var(--s) 0, calc(100% - var(--s)) 0, calc(100% - var(--s)) var(--d), 100% var(--d), calc(100% - var(--c)) calc(50% + var(--d)/2), 100% 100%, calc(100% - var(--s) - var(--d)) 100%, calc(100% - var(--s) - var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) 100%, 0 100%, var(--c) calc(50% + var(--d)/2));
-    background-color: #ffdf27;
-    /* the main color */
-    width: fit-content;
-    color: rgb(121, 20, 20);
+        padding: 0 calc(var(--s) + .5em) var(--d);
+        line-height: 2;
+        background:
+            conic-gradient(at left var(--s) bottom var(--d),
+                #0000 25%, #0008 0 37.5%, #0004 0) 0 /50% 100% no-repeat,
+            conic-gradient(at right var(--s) bottom var(--d),
+                #0004 62.5%, #0008 0 75%, #0000 0) 100%/50% 100% no-repeat;
+        clip-path: polygon(0 var(--d), var(--s) var(--d), var(--s) 0, calc(100% - var(--s)) 0, calc(100% - var(--s)) var(--d), 100% var(--d), calc(100% - var(--c)) calc(50% + var(--d)/2), 100% 100%, calc(100% - var(--s) - var(--d)) 100%, calc(100% - var(--s) - var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) calc(100% - var(--d)), calc(var(--s) + var(--d)) 100%, 0 100%, var(--c) calc(50% + var(--d)/2));
+        background-color: #ffdf27;
+        /* the main color */
+        width: fit-content;
+        color: rgb(24, 8, 8);
+    }
 }

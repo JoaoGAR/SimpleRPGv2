@@ -1,7 +1,7 @@
 import './itemInfoDialog.css';
 import React, { useState } from 'react';
 
-const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, diffy }) => {
+const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equipped, diffx, diffy }) => {
 
     if (!isOpen) return null;
 
@@ -19,8 +19,8 @@ const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equiped, diffx, 
             <div className='col-12 badge text-uppercase' style={{ backgroundColor: item.tier?.background, color: item.tier?.color }}>
                 <img style={{ width: '20px' }} src={'/' + item.icon} alt='Item icon' />
                 {item.name}
-                {equiped === 1 && (
-                    <span className='badge rounded-pill bg-primary'>Equiped</span>
+                {equipped === 1 && (
+                    <span className='badge rounded-pill bg-primary'>equipped</span>
                 )}
             </div>
             <div className='row'>

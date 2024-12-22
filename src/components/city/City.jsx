@@ -23,18 +23,7 @@ const City = () => {
     const { cityName, cityId } = useParams();
     const [structure, setStructure] = useState({});
     const [character, setCharacter] = useState(auth.user.character);
-    const [isCharacterSheetDialog, setCharacterSheetDialog] = useState(false);
-    const [inspecCharacterId, setInspecCharacterId] = useState(null);
     const distance = Math.sqrt((structure.coordsx - character.coordsx) ** 2 + (structure.coordsy - character.coordsy) ** 2);
-
-    const openCharacterSheetDialog = (characterId) => {
-        setInspecCharacterId(characterId);
-        setCharacterSheetDialog(true);
-    };
-    const closeCharacterSheetDialog = () => {
-        setCharacterSheetDialog(false);
-        setInspecCharacterId(null);
-    };
 
     async function getStructure() {
         const structureId = cityId;
@@ -139,7 +128,7 @@ const City = () => {
             <div className="col-3">
                 <div className="row text-uppercase">
                     <ul className="text-center mt-2">
-                        <li style={{ "--accent-color": "#0B374D" }}>
+                        <li style={{ "--accent-color": structure.color }}>
                             <div className="icon"><img className="city-icon" src={`../../${structure.icon}`} alt="Structure heraldry" /></div>
                             <div className="title">{structure.name}</div>
                         </li>
@@ -166,6 +155,7 @@ const City = () => {
                     <AlleyDialog
                         cityId={cityId}
                         openBattleRolls={openBattleRolls}
+                        character={character}
                     />
                 </div>
                 <div className={`row dialog ${isMarketDialog ? 'is-open' : ''}`}>

@@ -19,5 +19,6 @@ export const mergeSkills = (character) => {
         });
     });
 
-    return Array.from(skillMap.values());
+    const mergedSkills = [...skillMap.values()].sort((a, b) => a.attributeId - b.attributeId);
+    return mergedSkills;
 };

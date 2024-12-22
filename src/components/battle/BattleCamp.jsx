@@ -4,6 +4,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import Axios from 'axios';
 
+import { getWeapon } from '../../utils/inventory';
+
 const BattleCamp = () => {
 
     const location = useLocation();
@@ -38,10 +40,7 @@ const BattleCamp = () => {
     const [enemySpriteEffect, setEnemySpriteEffect] = useState(null);
 
     async function setBattleData() {
-        const weapon = character.inventory.find(
-            (inventory) => inventory.item.categoryId == 7
-        )?.item;
-
+        const weapon = getWeapon(character.inventory);
         const modifier = character.skills.find(
             (skills) => skills.skill.id == weapon.skillId
         );
@@ -64,9 +63,7 @@ const BattleCamp = () => {
                 break;
         }
 
-        const enemyWeapon = npc.inventory.find(
-            (inventory) => inventory.item.categoryId == 7
-        )?.item;
+        const enemyWeapon = getWeapon(npc.inventory);
 
         const enemyModifier = npc.skills.find(
             (skills) => skills.skill.id == enemyWeapon.skillId

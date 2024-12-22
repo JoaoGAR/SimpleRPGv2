@@ -16,8 +16,8 @@ export const ItemInfoProvider = ({ children }) => {
         });
     };
 
-    const openItemInfoDialog = (item, equiped) => {
-        setSelectedItem({ ...item, equiped: equiped });
+    const openItemInfoDialog = (item, equipped) => {
+        setSelectedItem({ ...item, equipped: equipped });
         setIsOpen(true);
     };
     const closeItemInfoDialog = () => { setSelectedItem(null), setIsOpen(false) };
@@ -30,7 +30,7 @@ export const ItemInfoProvider = ({ children }) => {
                 mousePosition={mousePosition}
                 isOpen={!!selectedItem}
                 onClose={closeItemInfoDialog}
-                equiped={selectedItem?.equiped}
+                equipped={selectedItem?.equipped}
                 diffx={-10}
                 diffy={-10}
             />}
