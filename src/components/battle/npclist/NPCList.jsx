@@ -1,3 +1,4 @@
+import './npcList.css';
 import { getWeapon } from '../../../utils/inventory';
 
 const NPCList = ({ listNPCs, challengeNPC }) => {

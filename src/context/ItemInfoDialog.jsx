@@ -11,9 +11,9 @@ const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equipped, diffx,
                 position: 'absolute',
                 top: mousePosition.y - diffy,
                 left: mousePosition.x - diffx,
-                zIndex: 1005,
+                zIndex: 1010,
                 border: `1px outset ${item.tier?.background}`,
-                width: '300px',
+                width: '400px',
             }}
         >
             <div className='col-12 badge text-uppercase' style={{ backgroundColor: item.tier?.background, color: item.tier?.color }}>
@@ -23,12 +23,13 @@ const ItemInfoDialog = ({ item, mousePosition, isOpen, onClose, equipped, diffx,
                     <span className='badge rounded-pill bg-primary'>equipped</span>
                 )}
             </div>
-            <div className='row'>
+            <div className='col-12'>
+                <span> <img style={{ height: '20px', width: '20px', filter: 'grayscale(1) invert(1)' }} src='/world/initiative.svg' /> {item.initiative} | </span>
                 {item.categoryId === 7 && (
-                    <span><img style={{ height: '20px', width: '20px' }} src='/world/d20w.svg' /> {item.attack ? item.attack : item.minAttack + '-' + item.maxAttack}</span>
+                    <span><img style={{ height: '20px', width: '20px' }} src='/world/d20w.svg' /> {item.attack ? item.attack : item.minAttack + '-' + item.maxAttack} </span>
                 )}
                 {item.armorClass > 0 && (
-                    <span><img style={{ height: '20px', width: '20px' }} src='/icons/items/shield.svg' /> {item.armorClass}</span>
+                    <span><img style={{ height: '20px', width: '20px', filter: 'grayscale(1) invert(1)' }} src='/icons/items/shield.svg' /> {item.armorClass} </span>
                 )}
             </div>
             <div className='col-12'>

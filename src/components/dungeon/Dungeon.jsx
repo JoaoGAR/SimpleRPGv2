@@ -169,6 +169,7 @@ const Dungeon = () => {
                         cityId={cityId}
                         openBattleRolls={openBattleRolls}
                         character={character}
+                        setCharacter={setCharacter}
                     />
                 </div>
             </div>

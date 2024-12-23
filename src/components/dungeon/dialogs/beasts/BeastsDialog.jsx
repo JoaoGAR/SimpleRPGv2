@@ -6,7 +6,7 @@ import NPCList from '../../../battle/npclist/NPCList';
 
 import { getWeapon } from '../../../../utils/inventory';
 
-const BeastsDialog = ({ cityId, openBattleRolls, character }) => {
+const BeastsDialog = ({ cityId, openBattleRolls, character, setCharacter }) => {
 
     const [listNPCs, setListNPCs] = useState([]);
 
@@ -51,6 +51,7 @@ const BeastsDialog = ({ cityId, openBattleRolls, character }) => {
         }
 
         const data = response.data;
+        setCharacter(response.data.character);
         openBattleRolls(data, character);
     }
 

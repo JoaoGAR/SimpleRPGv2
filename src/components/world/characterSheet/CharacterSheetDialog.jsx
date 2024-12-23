@@ -2,6 +2,7 @@ import './characterSheetDialog.css';
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { mergeSkills } from '../../../utils/skills';
+import { getInitiative } from '../../../utils/inventory';
 import EquipmentSlot from '../item/EquipmentSlot';
 
 const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
@@ -23,6 +24,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
     const [classColor1, setClassColor1] = useState(null);
     const [classColor2, setClassColor2] = useState(null);
     const [experience, setExperience] = useState(null);
+    const [initiative, setInitiative] = useState(null);
     const [listCharacterSkills, setCharacterSkills] = useState([]);
     const [listCharacterAttributes, setCharacterAttributes] = useState([]);
     const [listWeaponAbilities, setWeaponAbilities] = useState([]);
@@ -94,6 +96,7 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
         setBodyEquipment(updatedEquipment.bodyEquipment);
         setLegsEquipment(updatedEquipment.legsEquipment);
         setWeaponAbilities(offHand.abilities);
+        setInitiative(getInitiative(equipment));
     };
 
     if (!isOpen) return null;
@@ -222,15 +225,18 @@ const CharacterSheetDialog = ({ characterId, isOpen, onClose }) => {
                                         (skills) => skills?.skill.id == offHand?.skillId
                                     );
                                     return (
-                                        <div key={weaponAbility.id} className='row justify-content-center align-items-center' style={{fontSize: '20px'}}>
+                                        <div key={weaponAbility.id} className='row justify-content-center align-items-center' style={{ fontSize: '20px' }}>
                                             <span className='col-3 text-center'>
-                                                <img style={{ height: '50px', filter: 'grayscale(1) invert(1)' }} src={`../../${offHand?.icon}`} />+{Math.floor(skillModifier?.level / 5)}
+                                                <img style={{ height: '40px', filter: 'grayscale(1) invert(1)' }} src={`/world/initiative.svg`} />+{initiative}
                                             </span>
                                             <span className='col-3 text-center'>
-                                            <img style={{ height: '40px' }} src={`../../${offHand?.image}`} />{offHand?.attack}
+                                                <img style={{ height: '40px' }} src={`../../${offHand?.image}`} />{offHand?.attack}
                                             </span>
                                             <span className='col-3 text-center'>
                                                 <img className='ability-icon' style={{ height: '40px' }} src={`../../${ability.icon}`} /> {ability.attack}
+                                            </span>
+                                            <span className='col-3 text-center'>
+                                                <img style={{ height: '40px', filter: 'grayscale(1) invert(1)' }} src={`../../${offHand?.icon}`} />+{Math.floor(skillModifier?.level / 5)}
                                             </span>
                                         </div>
                                     );

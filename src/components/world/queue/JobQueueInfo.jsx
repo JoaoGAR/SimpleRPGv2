@@ -133,6 +133,8 @@ const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, se
                         const itemGradientStyle = {
                             '--item-gradient': `radial-gradient(circle, gray 5%, rgba(66, 66, 66, 0.01) 70%)`
                         };
+                        const uniqueBaseItem = item.image.split('.');
+                        const baseImage = uniqueBaseItem[(uniqueBaseItem.length - 1)] === 'png' ? `${item.image}` : `${item.image}t0.png`;
                         return (
                             <div
                                 key={rewardItem.id}
@@ -143,7 +145,7 @@ const JobQueueInfo = ({ queue, setListQueue, openRewardsDialog, setCharacter, se
                             >
                                 <img
                                     className='img-fluid'
-                                    src={`/${item.image}t0.png`}
+                                    src={`/${baseImage}`}
                                     alt='Reward Item image'
                                     style={itemGradientStyle}
                                 />

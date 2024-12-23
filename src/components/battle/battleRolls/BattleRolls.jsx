@@ -9,6 +9,8 @@ const BattleRolls = ({ rolls, openRolls, character }) => {
     const { closeBattleRolls } = useBattleRolls();
 
     const [winner, setWinner] = useState(null);
+    const [attackerInitiative, setAttackerInitiative] = useState(null);
+    const [targetInitiative, setTargetInitiative] = useState(null);
     const [experience, setExperience] = useState(0);
     const [gold, setGold] = useState(0);
     const [battleStatus, setBattleStatus] = useState([]);
@@ -22,6 +24,8 @@ const BattleRolls = ({ rolls, openRolls, character }) => {
             setRewards(rolls.createdItems || []);
             setExperience(rolls.experience || 0);
             setGold(rolls.gold || 0);
+            setAttackerInitiative(rolls.attackerInitiative);
+            setTargetInitiative(rolls.targetInitiative);
         }
     }, [rolls]);
 
@@ -47,6 +51,11 @@ const BattleRolls = ({ rolls, openRolls, character }) => {
                 </div>
 
                 <div className='row battle-historic' style={{ backgroundColor: 'white' }}>
+                    <div className='col-12 text-dark'>
+                        <h6>Iniciativa: Atacante {attackerInitiative}<img style={{ height: '30px', }} src={`/world/initiative.svg`} /></h6>
+                        <h6>Iniciativa: Alvo {targetInitiative}<img style={{ height: '30px', }} src={`/world/initiative.svg`} /></h6>
+                    </div>
+                    <hr />
                     {battleStatus.map((roundHistoric, index) => {
                         const textColor = roundHistoric.status ? 'text-success' : 'text-warning';
                         const status = roundHistoric.status ? 'ACERTOU' : 'ERROU';

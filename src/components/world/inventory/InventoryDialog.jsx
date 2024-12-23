@@ -2,6 +2,7 @@ import './inventoryDialog.css'
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { mergeSkills } from '../../../utils/skills';
+import { getInitiative } from '../../../utils/inventory';
 import EquipmentSlot from '../item/EquipmentSlot';
 import ItemBox from '../item/ItemBox';
 
@@ -19,6 +20,9 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
     const [bodyEquipment, setBodyEquipment] = useState([]);
     const [legsEquipment, setLegsEquipment] = useState([]);
     const [feetEquipment, setFeetEquipment] = useState([]);
+    const [initiative, setInitiative] = useState(getInitiative(character.inventory));
+    const wellness = character.wellness;
+    const wellnessPercentage = (wellness / 50) * 100;
 
     useEffect(() => {
         Axios.get('http://localhost:3001/api/inventory/get').then((response) => {
@@ -80,6 +84,7 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
         setFeetEquipment(updatedEquipment.feetEquipment);
         setBodyEquipment(updatedEquipment.bodyEquipment);
         setLegsEquipment(updatedEquipment.legsEquipment);
+        setInitiative(getInitiative(equipment));
     };
 
     if (!isOpen) return null;
@@ -135,11 +140,19 @@ const InventoryDialog = ({ character, isOpen, onClose, setCharacter }) => {
                             <div className='col-6'>
                                 <div className='row row-cols-2 align-items-end justify-content-start silhouette'>
                                     <div className='col text-center'>
+                                        <div className='progress mb-3' role='progressbar'>
+                                            <div className='progress-bar bg-info' style={{ width: `${wellnessPercentage}%` }}>{wellness}/50</div>
+                                        </div>
                                         <div className='row align-items-center armor-class'>
                                             <div className='col-12'>
                                                 <h1>{character.armorClass}</h1>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className='col'>
+                                        <span>
+                                            <img style={{ height: '30px', filter: 'grayscale(1) invert(1)' }} src={`/world/initiative.svg`} />+{initiative}
+                                        </span>
                                     </div>
                                 </div>
                                 <div className='row'>
